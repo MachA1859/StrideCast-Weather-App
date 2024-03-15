@@ -4,6 +4,7 @@ import './App.css';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Home_Page from './Pages/0Home_Page';
 import Temp from './Pages/1Temp';
+import Precipitation from './Pages/2Precipitation';
 import Humidity from './Pages/3Humidity';
 import AQI from './Pages/4AQI';
 import Wind_Speed from './Pages/5Wind_Speed';
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route index element = {<Home_Page />} />
           <Route path='/temperature' element = {<Temp />} />
+          <Route path='/precipitation' element = {<Precipitation />} />
           <Route path='/humidity' element = {<Humidity />} />
           <Route path='/aqi' element = {<AQI />} />
           <Route path='/windspeed' element = {<Wind_Speed />} />
