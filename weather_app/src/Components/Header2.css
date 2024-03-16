@@ -1,0 +1,185 @@
+.box {
+    height: 100px;
+    position: relative;
+    width: 1358px;
+  }
+  
+  .box .secondary-header {
+    background-image: url(./rectangle-1.svg);
+    background-size: 100% 100%;
+    height: 100px;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 1358px;
+  }
+  
+  .box .humidity {
+    height: 72px;
+    left: 1122px;
+    position: absolute;
+    top: 13px;
+    width: 189px;
+  }
+  
+  .box .group {
+    height: 39px;
+    left: 5px;
+    position: relative;
+    top: 16px;
+    width: 181px;
+  }
+  
+  .box .div {
+    color: #000000;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    left: 44px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 0;
+    width: 135px;
+  }
+  
+  .box .design-component-instance-node {
+    background-image: unset !important;
+    background-position: unset !important;
+    background-size: unset !important;
+    left: 0 !important;
+    position: absolute !important;
+    top: 0 !important;
+  }
+  
+  .box .air-quality {
+    background-color: #6cbdf866;
+    border-radius: 40px;
+    height: 72px;
+    left: 886px;
+    position: absolute;
+    top: 13px;
+    width: 209px;
+  }
+  
+  .box .group-2 {
+    height: 38px;
+    left: 8px;
+    position: relative;
+    top: 17px;
+    width: 196px;
+  }
+  
+  .box .text-wrapper-2 {
+    color: #000000;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    left: 38px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 1px;
+    white-space: nowrap;
+    width: 156px;
+  }
+  
+  .box .wind-wrapper {
+    height: 72px;
+    left: 720px;
+    position: absolute;
+    top: 13px;
+    width: 139px;
+  }
+  
+  .box .wind-2 {
+    height: 39px;
+    left: 8px;
+    position: relative;
+    top: 16px;
+    width: 125px;
+  }
+  
+  .box .text-wrapper-3 {
+    color: #000000;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    left: 46px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 0;
+  }
+  
+  .box .uv-wrapper {
+    height: 72px;
+    left: 572px;
+    position: absolute;
+    top: 13px;
+    width: 121px;
+  }
+  
+  .box .uv-instance {
+    left: 15px !important;
+    top: 17px !important;
+  }
+  
+  .box .precipitation {
+    height: 72px;
+    left: 284px;
+    position: absolute;
+    top: 13px;
+    width: 261px;
+  }
+  
+  .box .group-3 {
+    height: 39px;
+    left: 15px;
+    position: relative;
+    top: 16px;
+    width: 233px;
+  }
+  
+  .box .text-wrapper-4 {
+    color: #000000;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 32px;
+    font-weight: 400;
+    left: 39px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 0;
+    width: 192px;
+  }
+  
+  .box .temperature {
+    height: 72px;
+    left: 26px;
+    position: absolute;
+    top: 13px;
+    width: 231px;
+  }
+  
+  .box .group-4 {
+    height: 38px;
+    left: 16px;
+    position: relative;
+    top: 17px;
+    width: 202px;
+  }
+  
+  .box .text-wrapper-5 {
+    color: #000000;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 28px;
+    font-weight: 400;
+    left: 31px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 2px;
+    width: 169px;
+  }
+  
