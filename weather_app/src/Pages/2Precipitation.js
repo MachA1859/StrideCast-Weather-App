@@ -1,7 +1,6 @@
 import React from "react";
 import "./Precipitation.css";
 import { Sun } from '../Components/Sun';
-
 export default function Precipitation(){
     return (
         <div className="precipitation">
@@ -70,6 +69,8 @@ export default function Precipitation(){
                     </div>
                 </div>
                 <div className="main-body"/>
+                <div className="Graph">
+                </div>
             </div>
         </div>
     )
