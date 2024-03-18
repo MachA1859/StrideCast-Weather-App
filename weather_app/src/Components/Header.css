@@ -1,10 +1,10 @@
-.header .overlap-group {
+  .Page .header .overlap-group {
     border-radius: 35px;
     height: 70px;
     position: relative;
   }
   
-  .header .RUNNER {
+  .Page .header .RUNNER {
     height: 55px;
     left: 6px;
     object-fit: cover;
@@ -13,7 +13,7 @@
     width: 55px;
   }
   
-  .header .ellipse {
+  .Page .header .ellipse {
     border: 5px solid;
     border-color: #ffffff;
     border-radius: 35px;
@@ -25,7 +25,7 @@
     width: 70px;
   }
   
-  .header .search {
+  .Page .header .search {
     height: 60px;
     left: 0;
     object-fit: cover;
@@ -34,7 +34,7 @@
     width: 60px;
   }
   
-  .header.search-1 {
+  .Page .header.search-1 {
     background-color: #ffffff33;
     border-radius: 5px;
     height: 60px;
@@ -42,12 +42,12 @@
     width: 60px;
   }
   
-  .header.RUNNER-ICON {
+  .Page .header.RUNNER-ICON {
     height: 70px;
     width: 70px;
   }
   
-  .header.dropdown-menu {
+  .Page .header.dropdown-menu {
     background-color: #f5eded33;
     border-radius: 5px;
     height: 60px;

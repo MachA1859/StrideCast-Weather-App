@@ -24,7 +24,7 @@ export const Header = ({ property1, className }) => {
           <img
             className="search"
             alt="Search"
-            src={property1 === "dropdown-menu" ? "dropdown-menu.png" : "search-1.png"}
+            src={property1 === "dropdown-menu" ? "../Image/dropdown-menu.png" : "../Image/search.png"}
           />
         )}
       </div>
