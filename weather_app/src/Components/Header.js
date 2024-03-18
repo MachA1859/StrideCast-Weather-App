@@ -15,7 +15,7 @@ export const Header = ({ property1, className }) => {
       <div className={`header ${property1} ${className}`}>
         {property1 === "RUNNER-ICON" && (
           <div className="overlap-group">
-            <img className="RUNNER" alt="Runner" src="RUNNER.png" />
+            <img className="RUNNER" alt="Runner" src="../Image/RUNNER.png" />
             <div className="ellipse" />
           </div>
         )}

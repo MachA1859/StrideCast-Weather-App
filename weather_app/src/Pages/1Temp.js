@@ -1,78 +1,92 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Temp.css";
-import { Sun } from '../Components/Sun';
-
-
-export default function Temp(){
+export default function Temp({ property1, className }){
     return (
         <div className="Page">
+            <div className="Header">
+                <div className={`header ${property1} ${className}`}>
+                    {property1 === "RUNNER-ICON" && (
+                        <div className="overlap-group">
+                            <img className="RUNNER" alt="Runner" src="../Image/RUNNER.png"/>
+                            <div className="ellipse"/>
+                        </div>
+                    )}
+
+                    {["dropdown-menu", "search-1"].includes(property1) && (
+                        <img
+                            className="search"
+                            alt="Search"
+                            src={property1 === "dropdown-menu" ? "dropdown-menu.png" : "search-1.png"}
+                        />
+                    )}
+                </div>
+            </div>
+            <div className="Ribbon">
+
+            </div>
             <div className="temperature">
-                <div className="div">
-                    <div className="overlap">
-                        <div className="element-day-forecast">
-                            <div className="overlap-group">
-                                <div className="text-wrapper">Low 3°</div>
-                                <div className="text-wrapper-2">|</div>
-                                <div className="text-wrapper-3">Hi 10°</div>
-                                <div className="text-wrapper-4">Today</div>
-                                <Sun className="SUN-instance"/>
-                            </div>
-                            <div className="day">
-                                <div className="overlap-group-2">
-                                    <div className="text-wrapper-5">Sun 15</div>
-                                    <Sun className="design-component-instance-node"/>
-                                </div>
-                            </div>
-                            <div className="overlap-wrapper">
-                                <div className="overlap-group-2">
-                                    <div className="text-wrapper-6">Sat 14</div>
-                                    <Sun className="SUN-2"/>
-                                </div>
-                            </div>
-                            <div className="overlap-group-wrapper">
-                                <div className="overlap-group-2">
-                                    <Sun className="SUN-3"/>
-                                    <div className="text-wrapper-7">Fri 13</div>
-                                </div>
-                            </div>
-                            <div className="div-wrapper">
-                                <div className="overlap-group-2">
-                                    <Sun className="SUN-4"/>
-                                    <div className="text-wrapper-8">Thu 12</div>
-                                </div>
-                            </div>
-                            <div className="day-2">
-                                <div className="overlap-group-2">
-                                    <Sun className="SUN-5"/>
-                                    <div className="text-wrapper-9">Wed 11</div>
-                                </div>
-                            </div>
-                            <div className="day-3">
-                                <div className="overlap-group-2">
-                                    <Sun className="SUN-6"/>
-                                    <div className="text-wrapper-10">Tue 10</div>
-                                </div>
-                            </div>
-                            <div className="today">
-                                <div className="overlap-2">
-                                    <div className="text-wrapper-5">Today</div>
-                                    <Sun className="SUN-7"/>
-                                </div>
+                <div className="overlap">
+                    <div className="Day-forecast">
+
+                        <div className="currentbox">
+                            <div className="Low">Low 3°</div>
+                            <div className="break">|</div>
+                            <div className="High">Hi 10°</div>
+                            <div className="Today">Today</div>
+                        </div>
+
+                        <div className="day7">
+                            <div className="DaysBackground">
+                                <div className="forecasttext">Sun 15</div>
                             </div>
                         </div>
-                        <div className="suggestions">
-                            <p className="risk-of-heat-stroke">
-                                Risk of heat stroke from 11:00-14:00
-                                <br/>
-                                Ideal running time 07:00-10:00, 16:00-20:00
-                            </p>
-                            <div className="text-wrapper-11">Suggestions:</div>
+                        <div className="day6">
+                            <div className="DaysBackground">
+                                <div className="forecasttext">Sat 14</div>
+
+                            </div>
+                        </div>
+                        <div className="day5">
+                            <div className="DaysBackground">
+                                <div className="forecasttext">Fri 13</div>
+                            </div>
+                        </div>
+                        <div className="day4">
+                            <div className="DaysBackground">
+                                <div className="forecasttext">Thu 12</div>
+                            </div>
+                        </div>
+                        <div className="day3">
+                            <div className="DaysBackground">
+                                <div className="forecasttext">Wed 11</div>
+                            </div>
+                        </div>
+                        <div className="day2">
+                            <div className="DaysBackground">
+                                <div className="forecasttext">Tue 10</div>
+                            </div>
+                        </div>
+                        <div className="today">
+                            <div className="DaysBackground">
+                                <div className="forecasttext">Today</div>
+                            </div>
                         </div>
                     </div>
-                    <div className="body"/>
+                    <div className="suggestions">
+                        <p className="Warnings">
+                        </p>
+                        <div className="Suggestiontext">Suggestions:</div>
+                    </div>
+                </div>
+                <div className="body">
+
                 </div>
             </div>
         </div>
 
     )
 }
+Temp.propTypes = {
+    property1: PropTypes.oneOf(["RUNNER-ICON", "search-1", "dropdown-menu"]),
+};
