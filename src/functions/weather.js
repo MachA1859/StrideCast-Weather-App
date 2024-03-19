@@ -12,11 +12,3 @@ export function extractWeather(json) {
 
     return json.list[0].weather[0]
 }
-
-export function extractCity(json) {
-    if (json === undefined) {
-        return 'undefined'
-    }
-
-    return json.city.name
-}

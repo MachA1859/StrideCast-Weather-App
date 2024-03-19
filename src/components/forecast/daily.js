@@ -1,4 +1,5 @@
 import './daily.css'
+//import { extractWeather, fetchByCity } from './functions/weather'
 
 export default function Daily({ daily }) {
     let days = []
@@ -6,7 +7,7 @@ export default function Daily({ daily }) {
     daily.forEach((day) => {
         let logo;
 
-        if (day === "sunny") {
+        if (day === "Clear") {
             logo = './icons/sun.png'
         }
         else if (day === 'rainy') {

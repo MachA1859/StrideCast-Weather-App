@@ -25,7 +25,7 @@ function App() {
   // init block to retrieve the data
   useEffect(() => {
     async function init() {
-      const json = await fetchByCity("China")
+      const json = await fetchByCity("London")
       dispatch({isLoading: false, json})
     }
     init()
@@ -36,7 +36,29 @@ function App() {
     setBackground(extractWeather(state.json))
   }, [state.json])
 
+  function setBackground(weather) {
+    console.log(weather)
 
+    // decide which background to use
+    const app = document.getElementsByClassName('App')[0];
+    let backgroundImg;
+
+    if (weather.main === "Clear") {
+      backgroundImg = "./backgrounds/clearsky.png"
+    }
+    else if (weather.main === "Rain") {
+      backgroundImg = "./backgrounds/rainyDay.png"
+    }
+    else if (weather.main === "Snow") {
+      backgroundImg = "./backgrounds/Snow.png"
+    }
+    else if (weather.main === "Clouds") {
+      backgroundImg = "./backgrounds/cloudySky.png"
+    }
+
+    // set background
+    app.style.backgroundImage = "url(\"" + backgroundImg + "\")"
+  }
 
   return (
     <div className="App">
@@ -59,28 +81,6 @@ function App() {
   );
 }
 
-function setBackground(weather) {
-  console.log(weather)
 
-  // decide which background to use
-  const app = document.getElementsByClassName('App')[0];
-  let backgroundImg;
-
-  if (weather.main === "sunny") {
-    backgroundImg = "./backgrounds/sunnyDay.jpg"
-  }
-  else if (weather.main === "Rain") {
-    backgroundImg = "./backgrounds/rainyDay.png"
-  }
-  else if (weather.main === "Clear") {
-    backgroundImg = "./backgrounds/clearSky.jpg"
-  }
-  else if (weather.main === "Clouds") {
-    backgroundImg = "./backgrounds/cloudySky.jpg"
-  }
-
-  // set background
-  app.style.backgroundImage = "url(\"" + backgroundImg + "\")"
-}
 
 export default App;
