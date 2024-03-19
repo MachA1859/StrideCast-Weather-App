@@ -1,0 +1,19 @@
+.suggestions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.suggestions .left {
+    color: #ffffff;
+    font-family: "Space Mono", Helvetica;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.suggestions .right {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 400;
+    font-family: "Space Mono", Helvetica;
+}

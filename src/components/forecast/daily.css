@@ -1,0 +1,11 @@
+.daily {
+    display: flex;
+    justify-content: space-between;
+}
+
+.daily img {
+    background-color: rgb(147, 203, 243, 35%);
+    padding: 0.3rem 2rem;
+    height: 2rem;
+    border-radius: 0.4rem;
+}

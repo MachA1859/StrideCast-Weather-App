@@ -1,0 +1,27 @@
+.ribbon {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(147, 203, 243, 35%);
+    border-radius: 1rem;
+    margin: 1rem 1rem;
+}
+
+.ribbon .item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+.ribbon .item img {
+    height: 2rem;
+    padding: 0.2rem;
+}
+
+.ribbon a {
+    text-decoration: none;
+    color: black
+}
+.ribbon .item:hover {
+    transform: scale(1.1);
+    color: white;
+}
