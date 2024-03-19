@@ -1,4 +1,4 @@
-import { Ribbon } from "../../components/ribbon/ribbon";
+
 export default function DayPage() {
     return (
         <div>
