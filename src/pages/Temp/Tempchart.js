@@ -26,7 +26,8 @@ function Tempchart() {
     }
   return (
       <div className="Tempchart">
-          <div>
+          <div style={{height: '60rem', width: '40rem', padding: '1rem', margin: '1rem'}}
+          >
               <Line
                   data={data}
                   options={options}

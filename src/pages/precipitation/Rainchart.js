@@ -1,39 +1,35 @@
-import {Bar} from 'react-chartjs-2';
-import{Chart as ChartJS,BarElement,CategoryScale,LinearScale,Tooltip,Legend } from "chart.js";
+import{Bar} from 'react-chartjs-2';
+import{
+    Chart as ChartJS,
+    BarElement,
+    CategoryScale,
+    LinearScale,
+    Tooltip,
+    Legend} from 'chart.js';
 ChartJS.register(BarElement,CategoryScale,LinearScale,Tooltip,Legend);
-
-function RainChart() {
-    const data ={
-        labels:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+function Rainchart() {
+    const data={
+        labels:['Monday','Tuesday','Wednesday','Thursday','Friday'],
         datasets:[
             {
-                label: 'Chance of Rain',
-                data:[12,19,3,5,2,3,5],
+                label:'Rain',
+                data:[1,2,3,4,5],
                 backgroundColor:'rgba(75,192,192,0.2)',
-                borderColor:'rgba(75,192,192,1)',
-                borderWidth:1,
-                borderBlockColor:'rgba(75,192,192,1)',
-            }
-        ]
-    }
-    const options ={
-        legend: {
-            display:false
-        },
-
-    }
-
-  return (
-    <div className="RainChart">
-        <div>
+                borderColor:'rgb(60,208,227)',
+                borderWidth:2
+            }]};
+    const options={
+        scales:{
+            y:{
+                beginAtZero:true
+            }}};
+    return(
+        <div style={{height:'60rem', width:'40rem', padding:'1rem', margin:'1rem'}}
+        >
             <Bar
-                data ={data}
-                options={options}
-            >
-            </Bar>
+                data={data}
+                options={options}/>
         </div>
-    </div>
-  );
+    );
 }
-
-export default RainChart
+export default Rainchart;

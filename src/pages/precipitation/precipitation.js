@@ -11,19 +11,18 @@ export default function PercipitationPage() {
         <>
             <Ribbon/>
 
+
             <Card>
-                <div className="rainchart">
-                    <RainChart/>
-                </div>
+                <RainChart/>
             </Card>
 
             <Forecast
                 daily={[
-                    'sunny',
+                    'clear',
                     'rainy',
                     'thunder',
-                    'sunny',
-                    'sunny',
+                    'clear',
+                    'clear',
 
                 ]}
                 today={{

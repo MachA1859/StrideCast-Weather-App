@@ -1,9 +1,9 @@
-import Card from "../card/card";
+import Card2 from "../card/card2";
 import './suggestions.css'
 
 export default function ForecastSuggestions({ today }) {
     return (
-        <Card>
+        <Card2>
             <div className="suggestions">
                 <div className="left">
                     <p>Today</p>
@@ -13,6 +13,6 @@ export default function ForecastSuggestions({ today }) {
                     <p>Suggestions:</p>
                 </div>
             </div>
-        </Card>
+        </Card2>
     )
 }

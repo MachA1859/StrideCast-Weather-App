@@ -9,9 +9,7 @@ export default function TemperaturePage() {
             <Ribbon/>
 
             <Card>
-                <div className="TempChart">
-                    <TempChart/>
-                </div>
+                <TempChart/>
             </Card>
 
             <Forecast
