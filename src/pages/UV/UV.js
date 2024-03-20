@@ -38,7 +38,7 @@ export default function UVPage() {
 
     // Fetch UV data using useEffect
     useEffect(() => {
-        const apiKey1 = 'openuv-3yquj97rltx0biz4-io';
+        const apiKey1 = 'openuv-g95nqhrlu00311i-io';
         const latitude = 51.1;
         const longitude = -0.11;
 
