@@ -8,7 +8,7 @@ export default function Daily({ daily }) {
             logo = './icons/sun.png'
         }
         else if (day === 'rainy') {
-            logo = './icons/rain.png'
+            logo = './icons/raining.png'
         }
         else if (day === 'thunder') {
             logo = './icons/thunder.png'
