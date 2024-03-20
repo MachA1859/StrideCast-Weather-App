@@ -14,7 +14,7 @@ import { Ribbon } from "../../components/ribbon/ribbon";
 import Card from "../../components/card/card";
 import Forecast from "../../components/forecast/forecast";
 
-export default function WindPage() {
+export default function WindSpeedPage() {
     const apiKey = "37e1e972493bca166c0cc3a7551113ac";
     const weatherApiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=dubai";
     const windMapUrl = "https://openweathermap.org/weathermap?basemap=map&cities=false&layer=windspeed&lat=35.1738&lon=12.6563&zoom=3";
