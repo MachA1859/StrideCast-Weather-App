@@ -107,13 +107,11 @@ export default function UVPage() {
 
             <Forecast 
                 daily={[
-                    'sunny',
+                    'clear',
                     'rainy',
-                    'thunder', 
-                    'sunny', 
-                    'sunny', 
-                    'sunny', 
-                    'sunny'
+                    'thunder',
+                    'clear',
+                    'clear',
                 ]} 
                 today={{
                     hi: weatherData ? weatherData.main.temp_max : null, // Access temperature from weatherData

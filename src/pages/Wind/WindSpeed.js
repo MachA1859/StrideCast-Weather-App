@@ -1,17 +1,5 @@
-/*import {Ribbon} from "../../components/ribbon/ribbon";
-
-export default function WindSpeedPage() {
-    return (
-        <div>
-            <h1>Wind Speed</h1>
-            <Ribbon/>
-        </div>
-    )
-}
-*/
 import { useEffect, useState } from "react";
 import { Ribbon } from "../../components/ribbon/ribbon";
-import Card from "../../components/card/card";
 import Forecast from "../../components/forecast/forecast";
 
 export default function WindSpeedPage() {
@@ -68,16 +56,14 @@ export default function WindSpeedPage() {
                     allowFullScreen
                 ></iframe>
 
-            <Forecast 
+            <Forecast
                 daily={[
-                    'sunny',
+                    'clear',
                     'rainy',
-                    'thunder', 
-                    'sunny', 
-                    'sunny', 
-                    'sunny', 
-                    'sunny'
-                ]} 
+                    'thunder',
+                    'clear',
+                    'clear',
+                ]}
                 today={{
                     hi: weatherData ? weatherData.main.temp_max : null,
                     low: weatherData ? weatherData.main.temp_min : null,
