@@ -19,6 +19,8 @@
 
 .ribbon a {
     text-decoration: none;
+    font-family: "Space Mono",Helvetica;
+    font-size: 1.5rem;
     color: black
 }
 .ribbon .item:hover {

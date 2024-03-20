@@ -2,20 +2,21 @@ import './App.css';
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
+import Header from './components/header/header';
 import HomePage from './pages/home/home';
 import PrecipitationPage from './pages/precipitation/precipitation';
 import HumidityPage from './pages/humidity/humidity';
 import AQIPage from './pages/AQI/AQI';
-import Header from './components/header/header';
-
-import { extractWeather, fetchByCity } from './functions/weather'
-import { useGlobalState } from './stores/weatherState';
 import TemperaturePage from "./pages/Temp/Temperature";
 import WindSpeedPage from "./pages/Wind/WindSpeed";
 import UVPage from "./pages/UV/UV";
 import DayPage from "./pages/Days/Days";
 
-function No_Page() {
+import { extractWeather, fetchByCity } from './functions/weather'
+import { useGlobalState } from './stores/weatherState';
+
+
+function NoPage() {
   return null;
 }
 
@@ -74,7 +75,7 @@ function App() {
           <Route path="/wind" element={<WindSpeedPage/>}/>
           <Route path="/uv" element={<UVPage/>}/>
           <Route path="/Day" element={<DayPage/>}/>
-          <Route path='*' element={<No_Page/>}/>
+          <Route path='*' element={<NoPage/>}/>
         </Routes>
       </BrowserRouter>
     </div>

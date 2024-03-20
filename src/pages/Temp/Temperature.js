@@ -16,11 +16,11 @@ export default function TemperaturePage() {
 
             <Forecast
                 daily={[
-                    'sunny',
+                    'clear',
                     'rainy',
                     'thunder',
-                    'sunny',
-                    'sunny',
+                    'clear',
+                    'clear',
 
                 ]}
                 today={{

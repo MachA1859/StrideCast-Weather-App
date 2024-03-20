@@ -1,13 +1,10 @@
 import './daily.css'
-//import { extractWeather, fetchByCity } from './functions/weather'
 
 export default function Daily({ daily }) {
-    let days = []
-
-    daily.forEach((day) => {
+    const days = daily.map((day, index) => {
         let logo;
 
-        if (day === "Clear") {
+        if (day === "clear") {
             logo = './icons/sun.png'
         }
         else if (day === 'rainy') {
@@ -16,17 +13,18 @@ export default function Daily({ daily }) {
         else if (day === 'thunder') {
             logo = './icons/thunder.png'
         }
+        else if (day === 'snowy') {
+            logo = './icons/snow.png'
+        }
 
-        days.push(
-            <>
-                <img src={logo} alt={day} />
-            </>
-        )
-    })
+        return (
+            <img key={`${day}-${index}`} src={logo} alt={day} />
+        );
+    });
 
     return (
         <div className="daily">
             {days}
         </div>
-    )
+    );
 }
