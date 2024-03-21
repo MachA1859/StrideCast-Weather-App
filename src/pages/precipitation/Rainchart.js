@@ -50,6 +50,7 @@ function Rainchart() {
     };
 
     const options = {
+        legend: { display: false },
         scales: {
             y: {
                 beginAtZero: true,
@@ -68,7 +69,7 @@ function Rainchart() {
     };
 
     return (
-        <div style={{ height: '60rem', width: '40rem', padding: '1rem', margin: '1rem' }}>
+        <div style={{width: '60%', padding: '1rem', margin: '1rem' }}>
             <Bar
                 data={data}
                 options={options}

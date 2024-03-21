@@ -7,7 +7,7 @@ function runningTime() {
     return (
         <div className="runningTime">
             <div className="runningTime">
-                <img src="../../components/Days_images/shoe.png" alt="Ideal Running Time"/>
+                <img src="Days_images/shoe.png" alt="Ideal Running Time"/>
                 <h1>IDEAL RUNNING TIME</h1>
                 <h2>graphLine</h2>
                 <h2>times</h2>
