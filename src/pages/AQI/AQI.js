@@ -1,31 +1,78 @@
-import {Ribbon} from "../../components/ribbon/ribbon";
+import { useEffect, useState } from "react";
+import { Ribbon } from "../../components/ribbon/ribbon";
+import Card2 from "../../components/card/card2";
 import Forecast from "../../components/forecast/forecast";
-import Card from "../../components/card/card";
-import AQIchart from "./AQIchart";
 
-import UV1 from "./UV1.png"
-import UV2 from "./UV2.png"
+import AQI1 from "./AQI1.png";
+import AQI2 from "./AQI2.png";
+import AQI3 from "./AQI3.png";
+import AQI4 from "./AQI4.png";
+import AQI5 from "./AQI5.png";
 
-import "./AQI.css"
+import "./AQI.css";
+import axios from 'axios';
 
-export default function AQIPage() {
+const AQIImages = [AQI1, AQI2, AQI3, AQI4, AQI5];
+
+const apiKey = "ca5e7726e301724c181570c7c9883465";
+const apiUrl = "https://api.openweathermap.org/data/2.5/air_pollution?lat=51.507351&lon=-0.127758";
+
+const AQI = () => {
+    const [pollutants, setPollutants] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${apiUrl}&appid=${apiKey}`);
+                const data = response.data.list[0].components;
+
+                const pollutantData = [
+                    { name: 'PM 2.5', index: 'pm2_5', level: getPollutantLevel(data.pm2_5), concentration: data.pm2_5 },
+                    { name: 'PM 10', index: 'pm10', level: getPollutantLevel(data.pm10), concentration: data.pm10 },
+                    { name: 'O3', index: 'o3', level: getPollutantLevel(data.o3), concentration: data.o3 },
+                    { name: 'NO2', index: 'no2', level: getPollutantLevel(data.no2), concentration: data.no2 },
+                    { name: 'SO2', index: 'so2', level: getPollutantLevel(data.so2), concentration: data.so2 }
+                ];
+                setPollutants(pollutantData);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const getPollutantLevel = (value) => {
+        if (value <= 50) return 1; // Good
+        else if (value <= 100) return 2; // Fair
+        else if (value <= 150) return 3; // Moderate
+        else if (value <= 200) return 4; // Poor
+        else return 5; // Very Poor
+    };
+
     return (
         <>
             <Ribbon/>
 
-            <Card>
-                <AQIchart/>
-            </Card>
-
-            <Card>
-
-            </Card>
+            {pollutants.map((pollutant, index) => (
+                <Card2 key={index}>
+                    <img src={AQIImages[pollutant.level - 1]} alt={`AQI${pollutant.level}`} />
+                    <div>
+                        <p>{pollutant.name}</p>
+                        <p>Pollutant Level: {pollutant.level}</p>
+                        <p>Concentration: {pollutant.concentration} μg/m³</p>
+                    </div>
+                </Card2>
+            ))}
 
             <Forecast
                 today={{
                     'hi': 10,
                     'low': 3
-                }}/>
+                }}
+            />
         </>
-    )
-}
+    );
+};
+
+export default AQI;
