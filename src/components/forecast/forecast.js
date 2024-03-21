@@ -3,7 +3,7 @@ import "./forecast.css"
 import ForecastSuggestions from "./suggestions"
 import {useEffect} from "react";
 
-export default function Forecast({ daily, today }) {
+export default function Forecast({ daily, today, suggestions }) {
     return (
         <div className="forecast">
             <div className="forecast-daily">
@@ -11,7 +11,7 @@ export default function Forecast({ daily, today }) {
             </div>
 
             <div className="forecast-suggestions">
-                <ForecastSuggestions today={today} />
+                <ForecastSuggestions today={today} suggestions={suggestions}/>
             </div>
         </div>
     )
