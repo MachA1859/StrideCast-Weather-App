@@ -27,7 +27,7 @@ export default function UvPage() {
 
     // Fetch UV data using useEffect
     useEffect(() => {
-        const apiKey1 = 'openuv-gburlu1sw6ng-io';
+        const apiKey1 = 'openuv-gburlu1uksou-io';
         const latitude = 51.1;
         const longitude = -0.11;
 
