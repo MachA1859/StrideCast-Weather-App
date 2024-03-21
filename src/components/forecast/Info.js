@@ -2,6 +2,7 @@ import Card2 from "../card/card2";
 import './Info.css'
 import { useState, useEffect } from "react";
 import {useGlobalState} from "../../stores/weatherState";
+import {Title} from "chart.js";
 
 
 export default function ForecastSuggestions({ suggestions }) {
@@ -31,13 +32,15 @@ export default function ForecastSuggestions({ suggestions }) {
                 <Card2>
                     <div className="Temp">
                         <p>Today</p>
-                        <p> High: {weatherData.maxTemp}°C | Low: {weatherData.minTemp} °C </p>
+                        <p> High: {weatherData.maxTemp}°C </p>
+                        <p>Low: {weatherData.minTemp} °C </p>
                     </div>
                 </Card2>
 
                 <Card2>
+
                     <div className="Suggestions">
-                        <p>Suggestions:</p>
+                        <h3>Suggestions:</h3>
                         <p>{suggestions}</p>
                     </div>
                 </Card2>
