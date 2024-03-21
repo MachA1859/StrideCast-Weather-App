@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {useGlobalState} from "../../stores/weatherState";
 
 
-export default function Daily({  }) {
+export default function Daily() {
     const [weatherData, setWeatherData] = useState([]);
     const [weather, dispatch] = useGlobalState();
 

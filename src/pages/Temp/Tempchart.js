@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { extractWeather } from '../../functions/weather';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Legend, Tooltip } from 'chart.js';
 import {useGlobalState} from "../../stores/weatherState";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, Tooltip);
@@ -12,15 +11,16 @@ function Tempchart() {
     useEffect(() => {
         if(weather.json===undefined){
             setWeatherData([])
+
         }
-        {
+        else {
             const today=[]
             for(let i=0;i<weather.json.list.length;i++){
                 const dt= new Date(weather.json.list[i].dt_txt)
                 const now= new Date()
                 if(now.getDate()===dt.getDate())
                     today.push(weather.json.list[i])
-                }
+            }
             console.log(today)
             setWeatherData(today)
         }

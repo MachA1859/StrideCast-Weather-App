@@ -2,7 +2,6 @@ import { Ribbon } from "../../components/ribbon/ribbon";
 import Card from "../../components/card/card";
 import RainChart from "./Rainchart";
 import Forecast from "../../components/forecast/forecast";
-import "./precipitation.css"
 
 
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
-import { fetchByCity } from '../../functions/weather';
 import {useGlobalState} from "../../stores/weatherState";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
