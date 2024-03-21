@@ -71,7 +71,7 @@ function App() {
             <Route path="/AQI" element={<AQIPage />} />
             <Route path="/wind" element={<WindSpeedPage />} />
             <Route path="/uv" element={<UVPage />} />
-            <Route path="/Day" element={<DayPage />} />
+            <Route path="/day" element={<DayPage />} />
             <Route path='*' element={<NoPage />} />
           </Routes>
         </BrowserRouter>
