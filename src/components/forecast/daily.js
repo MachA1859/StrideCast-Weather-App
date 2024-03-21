@@ -18,7 +18,7 @@ export default function Daily() {
             const dt = new Date(weather.json.list[i].dt_txt)
             const payload = {
                 date: dt,
-                weather: weather.json.list[i].weather[0].main
+                weather: weather.json.list[i].weather[0].main,
             }
             daily[dt.getDay()] = payload
         }

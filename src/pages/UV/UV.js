@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Ribbon } from "../../components/ribbon/ribbon";
 import Card from "../../components/card/card";
@@ -114,11 +113,6 @@ export default function UvPage() {
             </Card>
 
             <Forecast
-                today={{
-                    hi: weatherData ? weatherData.main.temp_max : null, // Access temperature from weatherData
-                    low: weatherData ? weatherData.main.temp_min : null, // Access temperature from weatherData
-                    uv_max: uvData ? uvData.result.uv_max : null // Access UV max data
-                }} 
                 suggestions={displayUvSuggestions()}
             />
         </>
