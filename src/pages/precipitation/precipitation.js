@@ -3,8 +3,6 @@ import Card from "../../components/card/card";
 import RainChart from "./Rainchart";
 import Forecast from "../../components/forecast/forecast";
 import "./precipitation.css"
-import {useGlobalState} from "../../stores/weatherState";
-import {useEffect} from "react";
 
 
 

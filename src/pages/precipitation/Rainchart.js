@@ -24,7 +24,6 @@ function Rainchart() {
                     today.push(weather.json.list[i])
                 }
             }
-            console.log(weather.json.list)
 
             setWeatherData(today)
         }

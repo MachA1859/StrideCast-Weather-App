@@ -13,16 +13,14 @@ function Tempchart() {
         if(weather.json===undefined){
             setWeatherData([])
         }
-        else
         {
             const today=[]
             for(let i=0;i<weather.json.list.length;i++){
                 const dt= new Date(weather.json.list[i].dt_txt)
                 const now= new Date()
-                if(now.getDate()===dt.getDate()){
+                if(now.getDate()===dt.getDate())
                     today.push(weather.json.list[i])
                 }
-            }
             console.log(today)
             setWeatherData(today)
         }

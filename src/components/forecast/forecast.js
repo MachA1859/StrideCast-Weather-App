@@ -3,11 +3,11 @@ import "./forecast.css"
 import ForecastSuggestions from "./suggestions"
 import {useEffect} from "react";
 
-export default function Forecast({ daily, today, suggestions }) {
+export default function Forecast({ today, suggestions }) {
     return (
         <div className="forecast">
             <div className="forecast-daily">
-                <Daily daily={daily} />
+                <Daily />
             </div>
 
             <div className="forecast-suggestions">

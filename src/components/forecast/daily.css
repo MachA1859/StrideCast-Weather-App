@@ -3,9 +3,26 @@
     justify-content: space-between;
 }
 
-.daily img {
+.daily-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     background-color: rgb(147, 203, 243, 35%);
     padding: 0.3rem 2rem;
-    height: 2rem;
+    height: 3rem;
     border-radius: 0.4rem;
+    margin: 0 0.5rem;
+
+}
+
+.daily-card img {
+    width: 2rem;
+    height: 2rem;
+
+}
+.daily-card p
+{
+    font-family: 'Space Mono',Helvetica;
+    color: white;
 }

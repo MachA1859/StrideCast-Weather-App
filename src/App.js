@@ -34,7 +34,6 @@ function App() {
   useEffect(() => {
     if (state.json && state.json.list && state.json.list.length > 0) {
       const currentWeather = state.json.list[0].weather[0].main;
-      console.log("Current weather:", currentWeather);
       setBackground(currentWeather);
     }
   }, [state.json]);
