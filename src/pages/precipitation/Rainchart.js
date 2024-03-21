@@ -7,7 +7,7 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 function Rainchart() {
     const [weatherData, setWeatherData] = useState(null);
-    const [weather, dispatch] = useGlobalState();
+    const [weather] = useGlobalState();
 
 
     useEffect(() => {
@@ -61,7 +61,7 @@ function Rainchart() {
             x: {
                 title: {
                     display: true,
-                    text: 'Time'
+                    text: 'Time(GMT)'
                 }
             }
         }

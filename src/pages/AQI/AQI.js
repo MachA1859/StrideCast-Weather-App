@@ -22,14 +22,6 @@ export default function AQIPage() {
             </Card>
 
             <Forecast
-                daily={[
-                    'clear',
-                    'rainy',
-                    'thunder',
-                    'clear',
-                    'clear',
-
-                ]}
                 today={{
                     'hi': 10,
                     'low': 3

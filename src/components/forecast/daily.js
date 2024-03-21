@@ -21,8 +21,6 @@ export default function Daily() {
                 weather: weather.json.list[i].weather[0].main
             }
             daily[dt.getDay()] = payload
-
-            console.log(weather.json.list[i])
         }
 
         setWeatherData(Object.values(daily).sort((a, b) => a.date - b.date))
@@ -55,10 +53,9 @@ export default function Daily() {
 
 
         return (
-            <div className={"daily-card"}>
+            <div className={"daily-card"} key={index}>
                 <p>{date.getDate()} {month}</p> <img key={`${day}-${index}`} src={logo} alt={day}/>
             </div>
-
         );
     });
 

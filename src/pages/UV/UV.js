@@ -113,16 +113,7 @@ export default function UvPage() {
                 </div>
             </Card>
 
-            <Forecast 
-                daily={[
-                    'sunny',
-                    'rainy',
-                    'thunder', 
-                    'sunny', 
-                    'sunny', 
-                    'sunny', 
-                    'sunny'
-                ]} 
+            <Forecast
                 today={{
                     hi: weatherData ? weatherData.main.temp_max : null, // Access temperature from weatherData
                     low: weatherData ? weatherData.main.temp_min : null, // Access temperature from weatherData
