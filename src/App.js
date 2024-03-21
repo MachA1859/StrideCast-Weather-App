@@ -41,25 +41,35 @@ function App() {
     const app = document.getElementsByClassName('App')[0];
     let backgroundImg;
 
-    if (weather && weather.weatherConditions && weather.weatherConditions.main) {
-      if (weather.weatherConditions.main === "Clear") {
-        backgroundImg = "./backgrounds/clearsky.png";
-      }
-      else if (weather.weatherConditions.main === "Rain") {
-        backgroundImg = "./backgrounds/rainyDay.png";
-      }
-      else if (weather.weatherConditions.main === "Snow") {
-        backgroundImg = "./backgrounds/Snow.png";
-      }
-      else if (weather.weatherConditions.main === "Clouds") {
-        backgroundImg = "./backgrounds/cloudySky.png";
-      }
+    if (weather && weather.length > 0) {
+      // The first forecast represents current weather
+      const currentWeather = weather[0];
+      if (currentWeather && currentWeather.weatherConditions && currentWeather.weatherConditions.main) {
+        //Changing background according to weather conditions
+        switch (currentWeather.weatherConditions.main) {
+          case "Clear":
+            backgroundImg = "./backgrounds/clearsky.png";
+            break;
+          case "Rain":
+            backgroundImg = "./backgrounds/rainyDay.png";
+            break;
+          case "Snow":
+            backgroundImg = "./backgrounds/Snow.png";
+            break;
+          case "Clouds":
+            backgroundImg = "./backgrounds/cloudySky.png";
+            break;
+          default:
+            backgroundImg = null;
+        }
 
-      if (backgroundImg) {
-        app.style.backgroundImage = `url(${backgroundImg})`;
+        if (backgroundImg) {
+          app.style.backgroundImage = `url(${backgroundImg})`;
+        }
       }
     }
   }
+
 
   return (
       <div className="App">
@@ -83,4 +93,5 @@ function App() {
 }
 
 export default App;
+
 

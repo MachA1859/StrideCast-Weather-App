@@ -6,12 +6,14 @@ ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, 
 
 function Tempchart() {
     const [weatherData, setWeatherData] = useState(null);
+    const [cityName, setCityName] = useState('');
 
     useEffect(() => {
         // Fetch weather data from API
         async function fetchData() {
-            const response = await fetchByCity("London"); // Assuming "London" as the city
+            const response = await fetchByCity("London");
             setWeatherData(extractWeather(response));
+            setCityName(response ? response.city.name : ''); // Set the city name from the API response
         }
         fetchData();
     }, []);
