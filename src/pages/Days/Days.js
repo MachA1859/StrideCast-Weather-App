@@ -1,6 +1,6 @@
 import {Ribbon} from "../../components/ribbon/ribbon";
 import Forecast from "../../components/forecast/forecast";
-import Card from "../../components/card/card";
+import card2 from "../../components/card/card2";
 
 import runningTime from "./runningTime";
 import hourlyForecast from "./hourlyForecast";
@@ -9,35 +9,36 @@ import Essentials from "./Essentials";
 import routePlanner from "./routePlanner";
 import Info from "./Info";
 import "./Days.css"
+import Card2 from "../../components/card/card2";
 
 export default function DayPage() {
     return (
         <>
             <Ribbon/>
 
-            <Card>
+            <Card2>
                 <runningTime/>
-            </Card>
+            </Card2>
 
-            <Card>
+            <Card2>
                 <hourlyForecast/>
-            </Card>
+            </Card2>
 
-            <Card>
+            <Card2>
                 <stepsKmCal/>
-            </Card>
+            </Card2>
 
-            <Card>
+            <Card2>
                 <Essentials/>
-            </Card>
+            </Card2>
 
-            <Card>
+            <Card2>
                 <routePlanner/>
-            </Card>
+            </Card2>
 
-            <Card>
+            <Card2>
                 <Info/>
-            </Card>
+            </Card2>
 
             
         </>
