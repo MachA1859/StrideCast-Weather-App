@@ -23,10 +23,14 @@ export function extractWeather(json) {
             time: dateTime[1],
             maxTemperature: forecast.main.temp_max,
             minTemperature: forecast.main.temp_min,
-            weatherConditions: forecast.weather[0],
+            weatherConditions: {
+                main: forecast.weather[0].main,
+                description: forecast.weather[0].description,
+                icon: forecast.weather[0].icon,
+                rain: forecast.rain ? forecast.rain["3h"] : 0 // Check if rain data is available
+            },
             city: json.city.name
         };
     });
 }
-
 

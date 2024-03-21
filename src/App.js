@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Header from './components/header/header';
@@ -15,15 +15,14 @@ import DayPage from "./pages/Days/Days";
 import { extractWeather, fetchByCity } from './functions/weather';
 import { useGlobalState } from './stores/weatherState';
 
-
 function NoPage() {
   return null;
 }
 
 function App() {
   const [state, dispatch] = useGlobalState();
+  const [backgroundImg, setBackgroundImg] = useState(null);
 
-  // init block to retrieve the data
   useEffect(() => {
     async function init() {
       const json = await fetchByCity("London");
@@ -32,20 +31,15 @@ function App() {
     init();
   }, []);
 
-  // update the weather when state.json changes
   useEffect(() => {
     setBackground(extractWeather(state.json));
   }, [state.json]);
 
   function setBackground(weather) {
-    const app = document.getElementsByClassName('App')[0];
-    let backgroundImg;
-
     if (weather && weather.length > 0) {
-      // The first forecast represents current weather
       const currentWeather = weather[0];
       if (currentWeather && currentWeather.weatherConditions && currentWeather.weatherConditions.main) {
-        //Changing background according to weather conditions
+        let backgroundImg;
         switch (currentWeather.weatherConditions.main) {
           case "Clear":
             backgroundImg = "./backgrounds/clearsky.png";
@@ -62,19 +56,14 @@ function App() {
           default:
             backgroundImg = null;
         }
-
-        if (backgroundImg) {
-          app.style.backgroundImage = `url(${backgroundImg})`;
-        }
+        setBackgroundImg(backgroundImg);
       }
     }
   }
 
-
   return (
-      <div className="App">
+      <div className="App" style={{backgroundImage: `url(${backgroundImg})`}}>
         <Header />
-
         <BrowserRouter>
           <Routes>
             <Route index element={<HomePage />} />
@@ -93,5 +82,6 @@ function App() {
 }
 
 export default App;
+
 
 
