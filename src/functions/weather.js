@@ -2,7 +2,7 @@ const token = "b787f8f939e6de8235f3e80d9aac65ba"
 
 export async function fetchByCity(city) {
     try {
-        const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${token}&units=metric&cnt=9`);
+        const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${token}&units=metric`);
         return res.json();
     } catch (error) {
         console.error("Error fetching weather data:", error);
@@ -23,12 +23,13 @@ export function extractWeather(json) {
             time: dateTime[1],
             maxTemperature: forecast.main.temp_max,
             minTemperature: forecast.main.temp_min,
+            humidity: forecast.main.humidity,
             weatherConditions: {
                 main: forecast.weather[0].main,
                 description: forecast.weather[0].description,
                 icon: forecast.weather[0].icon,
-                rain: forecast.rain ? forecast.rain["3h"] : 0 // Check if rain data is available
             },
+            pop: forecast.pop,
             city: json.city.name
         };
     });

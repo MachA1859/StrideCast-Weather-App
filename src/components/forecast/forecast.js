@@ -1,6 +1,7 @@
 import Daily from "./daily"
 import "./forecast.css"
 import ForecastSuggestions from "./suggestions"
+import {useEffect} from "react";
 
 export default function Forecast({ daily, today }) {
     return (

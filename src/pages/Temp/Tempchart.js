@@ -1,29 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { fetchByCity, extractWeather } from '../../functions/weather';
+import { extractWeather } from '../../functions/weather';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Legend, Tooltip } from 'chart.js';
+import {useGlobalState} from "../../stores/weatherState";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, Tooltip);
 
 function Tempchart() {
     const [weatherData, setWeatherData] = useState(null);
-    const [cityName, setCityName] = useState('');
+    const [weather, dispatch] = useGlobalState();
 
     useEffect(() => {
-        // Fetch weather data from API
-        async function fetchData() {
-            const response = await fetchByCity("London");
-            setWeatherData(extractWeather(response));
-            setCityName(response ? response.city.name : ''); // Set the city name from the API response
+        if(weather.json===undefined){
+            setWeatherData([])
         }
-        fetchData();
-    }, []);
+        else
+        {
+            const today=[]
+            for(let i=0;i<weather.json.list.length;i++){
+                const dt= new Date(weather.json.list[i].dt_txt)
+                const now= new Date()
+                if(now.getDate()===dt.getDate()){
+                    today.push(weather.json.list[i])
+                }
+            }
+            console.log(today)
+            setWeatherData(today)
+        }
+
+    }, [weather.json])
 
     const data = {
-        labels: weatherData ? weatherData.map(entry => entry.time) : [],
+        labels: weatherData ? weatherData.map(entry => entry.dt_txt) : [],
         datasets: [
             {
                 label: 'Temperature',
-                data: weatherData ? weatherData.map(entry => entry.maxTemperature) : [],
+                data: weatherData ? weatherData.map(entry => entry.main.temp) : [],
                 borderColor: 'rgb(0,59,255)',
                 pointBorderColor: 'rgb(143,12,227)',
                 pointBackgroundColor: 'rgb(143,12,227)',

@@ -2,20 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
 import { fetchByCity } from '../../functions/weather';
+import {useGlobalState} from "../../stores/weatherState";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 function Rainchart() {
     const [weatherData, setWeatherData] = useState(null);
+    const [weather, dispatch] = useGlobalState();
+
 
     useEffect(() => {
-        async function fetchData() {
-            const json = await fetchByCity("London");
-            console.log("API response:", json);
-            setWeatherData(json.list);
+        if (weather.json === undefined) {
+            setWeatherData([])
         }
-        fetchData();
-    }, []);
+        else {
+            const today = []
+            for (let i = 0; i < weather.json.list.length; i++) {
+                const dt = new Date(weather.json.list[i].dt_txt)
+                const now = new Date()
+                if (now.getDay() === dt.getDay()) {
+                    today.push(weather.json.list[i])
+                }
+            }
+            console.log(weather.json.list)
+
+            setWeatherData(today)
+        }
+    }, [weather.json]);
+
 
     if (!weatherData) {
         return null;
@@ -28,7 +42,7 @@ function Rainchart() {
         labels: labels,
         datasets: [
             {
-                label: 'Chance of Rain',
+                label: 'Chance of Rain (%)',
                 data: rainData,
                 backgroundColor: 'rgba(75,192,192,0.2)',
                 borderColor: 'rgb(60,208,227)',

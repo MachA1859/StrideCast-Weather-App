@@ -32,33 +32,32 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setBackground(extractWeather(state.json));
+    if (state.json && state.json.list && state.json.list.length > 0) {
+      const currentWeather = state.json.list[0].weather[0].main;
+      console.log("Current weather:", currentWeather);
+      setBackground(currentWeather);
+    }
   }, [state.json]);
 
-  function setBackground(weather) {
-    if (weather && weather.length > 0) {
-      const currentWeather = weather[0];
-      if (currentWeather && currentWeather.weatherConditions && currentWeather.weatherConditions.main) {
-        let backgroundImg;
-        switch (currentWeather.weatherConditions.main) {
-          case "Clear":
-            backgroundImg = "./backgrounds/clearsky.png";
-            break;
-          case "Rain":
-            backgroundImg = "./backgrounds/rainyDay.png";
-            break;
-          case "Snow":
-            backgroundImg = "./backgrounds/Snow.png";
-            break;
-          case "Clouds":
-            backgroundImg = "./backgrounds/cloudySky.png";
-            break;
-          default:
-            backgroundImg = null;
-        }
-        setBackgroundImg(backgroundImg);
-      }
+  function setBackground(weatherCondition) {
+    let backgroundImg;
+    switch (weatherCondition) {
+      case "Clear":
+        backgroundImg = "./backgrounds/clearsky.png";
+        break;
+      case "Rain":
+        backgroundImg = "./backgrounds/rainyDay.png";
+        break;
+      case "Snow":
+        backgroundImg = "./backgrounds/Snow.png";
+        break;
+      case "Clouds":
+        backgroundImg = "./backgrounds/cloudySky.png";
+        break;
+      default:
+        backgroundImg = null;
     }
+    setBackgroundImg(backgroundImg);
   }
 
   return (
@@ -82,6 +81,7 @@ function App() {
 }
 
 export default App;
+
 
 
 
