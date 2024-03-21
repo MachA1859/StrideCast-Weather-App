@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Header from './components/header/header';
@@ -15,15 +15,14 @@ import DayPage from "./pages/Days/Days";
 import { extractWeather, fetchByCity } from './functions/weather';
 import { useGlobalState } from './stores/weatherState';
 
-
 function NoPage() {
   return null;
 }
 
 function App() {
   const [state, dispatch] = useGlobalState();
+  const [backgroundImg, setBackgroundImg] = useState(null);
 
-  // init block to retrieve the data
   useEffect(() => {
     async function init() {
       const json = await fetchByCity("London");
@@ -32,39 +31,37 @@ function App() {
     init();
   }, []);
 
-  // update the weather when state.json changes
   useEffect(() => {
-    setBackground(extractWeather(state.json));
+    if (state.json && state.json.list && state.json.list.length > 0) {
+      const currentWeather = state.json.list[0].weather[0].main;
+      setBackground(currentWeather);
+    }
   }, [state.json]);
 
-  function setBackground(weather) {
-    const app = document.getElementsByClassName('App')[0];
+  function setBackground(weatherCondition) {
     let backgroundImg;
-
-    if (weather && weather.weatherConditions && weather.weatherConditions.main) {
-      if (weather.weatherConditions.main === "Clear") {
+    switch (weatherCondition) {
+      case "Clear":
         backgroundImg = "./backgrounds/clearsky.png";
-      }
-      else if (weather.weatherConditions.main === "Rain") {
+        break;
+      case "Rain":
         backgroundImg = "./backgrounds/rainyDay.png";
-      }
-      else if (weather.weatherConditions.main === "Snow") {
+        break;
+      case "Snow":
         backgroundImg = "./backgrounds/Snow.png";
-      }
-      else if (weather.weatherConditions.main === "Clouds") {
+        break;
+      case "Clouds":
         backgroundImg = "./backgrounds/cloudySky.png";
-      }
-
-      if (backgroundImg) {
-        app.style.backgroundImage = `url(${backgroundImg})`;
-      }
+        break;
+      default:
+        backgroundImg = null;
     }
+    setBackgroundImg(backgroundImg);
   }
 
   return (
-      <div className="App">
+      <div className="App" style={{backgroundImage: `url(${backgroundImg})`}}>
         <Header />
-
         <BrowserRouter>
           <Routes>
             <Route index element={<HomePage />} />
@@ -83,4 +80,7 @@ function App() {
 }
 
 export default App;
+
+
+
 

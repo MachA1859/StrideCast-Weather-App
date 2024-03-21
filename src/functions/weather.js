@@ -12,17 +12,26 @@ export async function fetchByCity(city) {
 
 export function extractWeather(json) {
     if (!json || !json.list || json.list.length === 0) {
-        return null;
+        return [];
     }
 
-    const firstForecast = json.list[0];
-    const dateTime = firstForecast.dt_txt.split(" ");
+    return json.list.map(forecast => {
+        const dateTime = forecast.dt_txt.split(" ");
 
-    return {
-        date: dateTime[0],
-        time: dateTime[1],
-        maxTemperature: firstForecast.main.temp_max,
-        minTemperature: firstForecast.main.temp_min,
-        weatherConditions: firstForecast.weather[0]
-    };
+        return {
+            date: dateTime[0],
+            time: dateTime[1],
+            maxTemperature: forecast.main.temp_max,
+            minTemperature: forecast.main.temp_min,
+            humidity: forecast.main.humidity,
+            weatherConditions: {
+                main: forecast.weather[0].main,
+                description: forecast.weather[0].description,
+                icon: forecast.weather[0].icon,
+            },
+            pop: forecast.pop,
+            city: json.city.name
+        };
+    });
 }
+

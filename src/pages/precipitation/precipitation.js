@@ -4,9 +4,9 @@ import RainChart from "./Rainchart";
 import Forecast from "../../components/forecast/forecast";
 import "./precipitation.css"
 
-export default function PercipitationPage() {
-    // TODO: get daily forecast from api
 
+
+export default function PercipitationPage() {
     return (
         <>
             <Ribbon/>

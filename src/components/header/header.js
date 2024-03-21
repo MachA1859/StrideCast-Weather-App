@@ -10,7 +10,6 @@ export default function Header() {
     const searchClick = async () => {
         try {
             const json = await fetchByCity(textstate);
-            console.log(json);
             if (json && json.list) {
                 dispatch({ isLoading: false, json });
             } else {

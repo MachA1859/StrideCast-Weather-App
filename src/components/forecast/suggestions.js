@@ -1,7 +1,7 @@
 import Card2 from "../card/card2";
 import './suggestions.css'
 
-export default function ForecastSuggestions({ today }) {
+export default function ForecastSuggestions({ today, suggestions }) {
     return (
         <Card2>
             <div className="suggestions">
@@ -11,6 +11,7 @@ export default function ForecastSuggestions({ today }) {
                 </div>
                 <div className="right">
                     <p>Suggestions:</p>
+                    <p>{suggestions}</p>
                 </div>
             </div>
         </Card2>
