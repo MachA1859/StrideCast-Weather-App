@@ -2,6 +2,10 @@ import {Ribbon} from "../../components/ribbon/ribbon";
 import Forecast from "../../components/forecast/forecast";
 import Card from "../../components/card/card";
 import AQIchart from "./AQIchart";
+
+import UV1 from "./UV1.png"
+import UV2 from "./UV2.png"
+
 import "./AQI.css"
 
 export default function AQIPage() {

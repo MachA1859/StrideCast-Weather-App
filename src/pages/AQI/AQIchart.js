@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AQI.css';
+import UV1 from "./UV1.png"
+import UV2 from "./UV2.png"
 
 function AQIchart() {
     const [aqiData, setAqiData] = useState(null);
