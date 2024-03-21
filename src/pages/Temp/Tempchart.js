@@ -6,7 +6,7 @@ ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, 
 
 function Tempchart() {
     const [weatherData, setWeatherData] = useState(null);
-    const [weather, dispatch] = useGlobalState();
+    const [weather] = useGlobalState();
 
     useEffect(() => {
         if(weather.json===undefined){
@@ -42,12 +42,19 @@ function Tempchart() {
     };
 
     const options = {
-        plugins: {
-            position: 'left'
-        },
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Temperature (°C)'
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Time(GMT)'
+                }
             }
         }
     };

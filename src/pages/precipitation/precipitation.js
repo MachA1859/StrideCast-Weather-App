@@ -16,18 +16,12 @@ export default function PercipitationPage() {
             </Card>
 
             <Forecast
-                daily={[
-                    'clear',
-                    'rainy',
-                    'thunder',
-                    'clear',
-                    'clear',
-
-                ]}
                 today={{
                     'hi': 10,
                     'low': 3
-                }}/>
+                }}
+                suggestions={'hi'}
+            />
         </>
     )
 }

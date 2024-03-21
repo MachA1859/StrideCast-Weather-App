@@ -8,7 +8,6 @@ export default function WindSpeedPage() {
     const windMapUrl = "https://openweathermap.org/weathermap?basemap=map&cities=false&layer=windspeed&lat=35.1738&lon=12.6563&zoom=3";
 
     const [weatherData, setWeatherData] = useState(null);
-    const [windData, setWindData] = useState(null);
 
     async function fetchWeather() {
         try {
@@ -26,8 +25,6 @@ export default function WindSpeedPage() {
 
     useEffect(() => {
         const uvApiKey = 'openuv-3yquj97rltx0biz4-io';
-        const latitude = 51.1;
-        const longitude = -0.11;
 
         fetch(windMapUrl, {
             method: 'GET',
@@ -36,40 +33,27 @@ export default function WindSpeedPage() {
                 'x-access-token': uvApiKey
             },
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            setWindData(data);
-        })
-        .catch(err => console.log(err));
+            .catch(err => console.log(err));
     }, []);
 
     return (
         <>
             <Ribbon />
-                <iframe
-                    src="https://openweathermap.org/weathermap?basemap=map&cities=false&layer=windspeed&lat=35.1738&lon=12.6563&zoom=3"
-                    title="Wind Speed Map"
-                    width="100%"
-                    height="600px"
-                    frameBorder="0"
-                    allowFullScreen
-                ></iframe>
+            <iframe
+                src="https://openweathermap.org/weathermap?basemap=map&cities=false&layer=windspeed&lat=35.1738&lon=12.6563&zoom=3"
+                title="Wind Speed Map"
+                width="100%"
+                height="600px"
+                frameBorder="0"
+                allowFullScreen
+            ></iframe>
 
             <Forecast
-                daily={[
-                    'clear',
-                    'rainy',
-                    'thunder',
-                    'clear',
-                    'clear',
-                ]}
                 today={{
                     hi: weatherData ? weatherData.main.temp_max : null,
                     low: weatherData ? weatherData.main.temp_min : null,
-                }} 
+                }}
             />
         </>
     );
 }
-
