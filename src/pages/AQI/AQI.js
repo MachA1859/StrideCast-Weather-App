@@ -67,7 +67,7 @@ const AQI = () => {
                             <div className="main_info">
 
                                 <div className="header-line">
-                                    <h3>Primary Pollutant</h3>
+                                    <h3>Primary Pollutant:</h3>
                                     <h2>{highestPollutant.name}</h2>
                                 </div>
                                     <p>Pollutant Level: {highestPollutant.level}</p>
