@@ -19,6 +19,7 @@ const apiUrl = "https://api.openweathermap.org/data/2.5/air_pollution?lat=51.507
 
 const AQI = () => {
     const [pollutants, setPollutants] = useState([]);
+    const [highestPollutant, setHighestPollutant] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,6 +35,9 @@ const AQI = () => {
                     { name: 'SO2', index: 'so2', level: getPollutantLevel(data.so2), concentration: data.so2 }
                 ];
                 setPollutants(pollutantData);
+
+                const highest = pollutantData.reduce((prev, current) => (prev.concentration > current.concentration) ? prev : current);
+                setHighestPollutant(highest);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -54,16 +58,38 @@ const AQI = () => {
         <>
             <Ribbon/>
 
-            {pollutants.map((pollutant, index) => (
-                <Card2 key={index}>
-                    <img src={AQIImages[pollutant.level - 1]} alt={`AQI${pollutant.level}`} />
-                    <div>
-                        <p>{pollutant.name}</p>
-                        <p>Pollutant Level: {pollutant.level}</p>
-                        <p>Concentration: {pollutant.concentration} μg/m³</p>
-                    </div>
+            <div className="card-container">
+                {highestPollutant && (
+
+                    <Card2>
+                        <div>
+                            <img  className="main-pollutant-image" src={AQIImages[highestPollutant.level - 1]} alt={`AQI${highestPollutant.level}`} />
+                            <div className="main_info">
+
+                                <div className="header-line">
+                                    <h3>Primary Pollutant</h3>
+                                    <h2>{highestPollutant.name}</h2>
+                                </div>
+                                    <p>Pollutant Level: {highestPollutant.level}</p>
+                            </div>
+                        </div>
+                    </Card2>)}
+
+                <Card2>
+                {pollutants.map((pollutant, index) => (
+                        <div className="info-center" key={index}>
+                                <img className="pollutant-image" src={AQIImages[pollutant.level - 1]}
+                                     alt={`AQI${pollutant.level}`}/>
+                                <p className="name">{pollutant.name}</p>
+                                <p>Pollutant Level: {pollutant.level}</p>
+                                <p>Concentration: {pollutant.concentration} μg/m³</p>
+                        </div>
+                    ))}
                 </Card2>
-            ))}
+
+
+            </div>
+
 
             <Forecast
                 today={{

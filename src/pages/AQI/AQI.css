@@ -1,10 +1,38 @@
-
-
-.AQI {
+.card-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
     margin-top: 20px;
+    color: white;
+    font-family: "Space Mono",Helvetica;
+}
+
+.pollutant-image {
+    width: 50%;
+    height: auto;
+}
+.main-pollutant-image{
+    width: 60%;
+    height: auto;
+}
+p{
+    font-size: 1.2rem;
+    margin: 0;
+}
+.info-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font: 1rem;
+    color: white;
+    padding: 0.4rem;
+}
+.header-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-family: "Space Mono",Helvetica;
 }
 
