@@ -4,7 +4,7 @@ import { useGlobalState } from "../../stores/weatherState";
 import { fetchByCity } from "../../functions/weather";
 
 export default function Header() {
-    const [state, dispatch] = useGlobalState();
+    const [state,dispatch] = useGlobalState();
     const [textstate, setTextState] = React.useState("");
 
     const searchClick = async () => {
