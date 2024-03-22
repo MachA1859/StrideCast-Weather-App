@@ -1,31 +1,26 @@
 import { useEffect, useState } from "react";
 import {Ribbon} from "../../components/ribbon/ribbon";
 import Card2 from "../../components/card/card2";
-import Forecast from "../../components/forecast/forecast";
-
-import backpack from "./backpack.png";
-
 import "./Days.css"
 import axios from 'axios';
-//leaflet
-import {MapContainer, TileLayer} from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 
-const Images = [backpack];
+//images
+import backpack from "./backpack.png";
+import location from "./location-pin.png";
+
+//leaflet
+import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import { Icon, divIcon, point } from "leaflet";
+import MarkerClusterGroup from "react-leaflet-cluster";
 
 const apiKey = "c0b5d0fcf8e510256c18eded3d9c33f6";
 const londonWeatherUrl = "https://pro.openweathermap.org/data/2.5/forecast/hourly?q=London&units=metric&cnt=24";
 const londonHourlyTempUrl = "https://pro.openweathermap.org/data/2.5/forecast/hourly?q=London&units=metric&cnt=24";
 
-const leafletRoutePlanner1 = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
-const leafletRoutePlanner2 = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
 
 const DayPage = () => {
     const [hourlyTemp, setHourlyTemp] = useState([]);
-    const [stepsData, setStepsData] = useState([]);
-    const [essentials, setEssentials] = useState([]);
-    const [leafletRoute1, setLeafletRoute1] = useState([]);
-    const [leafletRoute2, setLeafletRoute2] = useState([]);
     const [weatherInfo, setWeatherInfo] = useState([]);
 
     useEffect(() => {
@@ -53,6 +48,31 @@ const DayPage = () => {
         fetchWeatherInfo();
 
     }, []);
+    //leaflet map markers
+    //London geocode: [51.507351, -0.127758]
+    const markers = [
+        {
+            geocode: [51.507351, -0.127758],
+            popUp: "start location"
+        },
+        {
+            geocode: [51.5131, -0.1387],
+            popUp: "destination"
+        }
+    ];
+
+    const customIcon = new Icon({
+        iconUrl: location,
+        iconSize: [38, 38] 
+    })
+
+    const createCustomClusterIcon = (cluster) => {
+        return new divIcon({
+            html: `<div class= "cluster-icon">${cluster.getChildCount()}</div>`,
+            className: 'custom-marker-cluster',
+            iconSize: point(33,33, true)
+        });
+    };
 
     return (
         <>
@@ -96,6 +116,17 @@ const DayPage = () => {
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
+
+                    <MarkerClusterGroup
+                        chunckedLoading
+                        iconCreateFunction={createCustomClusterIcon}
+                    >
+                        {markers.map(marker => (
+                            <Marker position={marker.geocode} icon={customIcon}>
+                                <Popup>{marker.popUp}</Popup>
+                            </Marker>
+                        ))}
+                    </MarkerClusterGroup>
                 </MapContainer>
             </Card2>
 

@@ -2,3 +2,17 @@
     height: 50vh;
     width:  100%;
 }
+
+.cluster-icon {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    background-color: rgba(171, 129, 248, 0.5);
+    transform: translate(-25%,-25%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    font-size: 2rem;
+    font-family: "Space Mono", Helvetica;
+}
