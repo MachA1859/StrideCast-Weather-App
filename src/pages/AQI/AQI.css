@@ -1,38 +1,39 @@
 .card-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    margin-top: 20px;
+    justify-content: center;
+
     color: white;
     font-family: "Space Mono",Helvetica;
 }
-
-.pollutant-image {
-    width: 50%;
-    height: auto;
+.main_info{
+    padding: 2rem;
 }
-.main-pollutant-image{
-    width: 60%;
-    height: auto;
+.pollutant-level{
+    font-size: 2.5rem;
+    font-weight: bold;
 }
-p{
-    font-size: 1.2rem;
-    margin: 0;
+.top-line{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap : 1rem;
 }
-.info-center {
+.pollutants{
+    display: flex;
+    gap: 3rem;
+}
+.infos{
+    padding: 1rem;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font: 1rem;
-    color: white;
-    padding: 0.4rem;
 }
-.header-line {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    font-family: "Space Mono",Helvetica;
+.infos img{
+    width: 6rem;
+    height: 6rem;
+}
+.data{
+    font-size: 1.5rem;
 }
 

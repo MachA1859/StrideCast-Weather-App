@@ -12,7 +12,7 @@ import WindSpeedPage from "./pages/Wind/WindSpeed";
 import UVPage from "./pages/UV/UV";
 import DayPage from "./pages/Days/Days";
 
-import { extractWeather, fetchByCity } from './functions/weather';
+import { fetchByCity } from './functions/weather';
 import { useGlobalState } from './stores/weatherState';
 
 function NoPage() {
