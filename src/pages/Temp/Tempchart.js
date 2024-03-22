@@ -4,13 +4,14 @@ import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement
 import {useGlobalState} from "../../stores/weatherState";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, Tooltip);
 
+export let weatherData = null;
+
 function Tempchart() {
-    const [weatherData, setWeatherData] = useState(null);
     const [weather] = useGlobalState();
 
     useEffect(() => {
         if(weather.json===undefined){
-            setWeatherData([])
+            weatherData = []
 
         }
         else {
@@ -22,7 +23,7 @@ function Tempchart() {
                     today.push(weather.json.list[i])
             }
             console.log(today)
-            setWeatherData(today)
+            weatherData = today
         }
 
     }, [weather.json])

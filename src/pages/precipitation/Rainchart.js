@@ -34,7 +34,7 @@ function Rainchart() {
     }
 
     const labels = weatherData.map(entry => entry.dt_txt.split(" ")[1]);
-    const rainData = weatherData.map(entry => entry.pop * 100); // Multiply by 100 to convert to percentage
+    const rainData = weatherData.map(entry => entry.pop*100 ); // Multiply by 100 to convert to percentage
 
     const data = {
         labels: labels,
