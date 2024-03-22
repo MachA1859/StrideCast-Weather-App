@@ -14,18 +14,12 @@ function Humidchart() {
 
         }
         else {
-            const today=[]
-            for(let i=0;i<weather.json.list.length;i++){
-                const dt= new Date(weather.json.list[i].dt_txt)
-                const now= new Date()
-                if(now.getDate()===dt.getDate())
-                    today.push(weather.json.list[i])
-            }
-            console.log(today)
-            setWeatherData(today)
+            const DataPoints = weather.json.list.slice(0, 13);
+            console.log(DataPoints)
+            setWeatherData(DataPoints)
         }
+    }, [weather.json]);
 
-    }, [weather.json])
 
     const data = {
         labels: weatherData ? weatherData.map(entry => entry.dt_txt) : [],

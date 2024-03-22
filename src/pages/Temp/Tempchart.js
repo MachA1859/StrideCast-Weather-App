@@ -7,24 +7,19 @@ ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, 
 export let weatherData = null;
 
 function Tempchart() {
+
     const [weather] = useGlobalState();
+    const [weatherData, setWeatherData] = useState(null); // Add this line
 
     useEffect(() => {
         if(weather.json===undefined){
-            weatherData = []
-
+            setWeatherData([]) // Change this line
         }
         else {
-            const today=[]
-            for(let i=0;i<weather.json.list.length;i++){
-                const dt= new Date(weather.json.list[i].dt_txt)
-                const now= new Date()
-                if(now.getDate()===dt.getDate())
-                    today.push(weather.json.list[i])
-            }
-            weatherData = today
+            const firstTenDataPoints = weather.json.list.slice(0, 10);
+            console.log(firstTenDataPoints)
+            setWeatherData(firstTenDataPoints) // Change this line
         }
-
     }, [weather.json])
 
     const data = {
