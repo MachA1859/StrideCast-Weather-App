@@ -7,12 +7,15 @@ import backpack from "./backpack.png";
 
 import "./Days.css"
 import axios from 'axios';
+//leaflet
+import {MapContainer, TileLayer} from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 
 const Images = [backpack];
 
-const apiKey = "ca5e7726e301724c181570c7c9883465";
-const londonWeatherUrl = "https://pro.openweathermap.org/data/2.5/forecast/hourly?q=London&units=metric";
-const londonHourlyTempUrl = "https://pro.openweathermap.org/data/2.5/forecast/hourly?q=London&units=metric";
+const apiKey = "c0b5d0fcf8e510256c18eded3d9c33f6";
+const londonWeatherUrl = "https://pro.openweathermap.org/data/2.5/forecast/hourly?q=London&units=metric&cnt=24";
+const londonHourlyTempUrl = "https://pro.openweathermap.org/data/2.5/forecast/hourly?q=London&units=metric&cnt=24";
 
 const leafletRoutePlanner1 = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
 const leafletRoutePlanner2 = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -36,24 +39,6 @@ const DayPage = () => {
             }
         };
 
-        const fetchLeafletRoute1 = async () => {
-            try {
-                // Leaflet route planner 1 API call
-                setLeafletRoute1("https://tile.openstreetmap.org/{z}/{x}/{y}.png");
-            } catch (error) {
-                console.error("Error fetching leaflet route planner 1 data:", error);
-            }
-        };
-
-        const fetchLeafletRoute2 = async () => {
-            try {
-                // Leaflet route planner 2 API call
-                setLeafletRoute2("https://tile.openstreetmap.org/{z}/{x}/{y}.png");
-            } catch (error) {
-                console.error("Error fetching leaflet route planner 2 data:", error);
-            }
-        };
-
         const fetchWeatherInfo = async () => {
             try {
                 const response = await axios.get(`${londonWeatherUrl}&appid=${apiKey}`);
@@ -65,8 +50,6 @@ const DayPage = () => {
         };
         
         fetchHourlyTemp();
-        fetchLeafletRoute1();
-        fetchLeafletRoute2();
         fetchWeatherInfo();
 
     }, []);
@@ -90,28 +73,37 @@ const DayPage = () => {
             
 
             <Card2>
-                {/* Render steps, km, calorie goal data */}
-                {/* Use values from 'stepsData' state */}
-            </Card2>
-
-            <Card2>
-                <h3>Essentials</h3>
-                    <ul>
-                        {/* Render suggestions based on weather */}
-                        {/* Use values from 'essentials' state */}
-                    </ul>
-                <img src={"./backpack.png"} alt={"Backpack"} />
-            </Card2>
-
-            <Card2>
-                <div id="map">
-                    <a href="https://www.openstreetmap.org/copyright"/>
+                <div>
+                    {/* Render steps, km, calorie goal data */}
+                    {/* Use values from 'stepsData' state */}
                 </div>
             </Card2>
 
             <Card2>
-                <h3>Info</h3>
-                <p>{weatherInfo}</p>
+                <div>
+                    <h3>Essentials</h3>
+                        <ul>
+                            {/* Render suggestions based on weather */}
+                            {/* Use values from 'essentials' state */}
+                        </ul>
+                    <img src={"./backpack.png"} alt={"Backpack"} />
+                </div>
+            </Card2>
+
+            <Card2>
+                <MapContainer center={[51.507351, -0.127758]} zoom={13}>
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                </MapContainer>
+            </Card2>
+
+            <Card2>
+                <div>
+                    <h3>Info</h3>
+                    <p>{weatherInfo}</p>
+                </div>
             </Card2>
 
             

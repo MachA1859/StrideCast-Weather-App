@@ -64,7 +64,7 @@ function App() {
         <Header />
         <BrowserRouter>
           <Routes>
-            <Route index element={<HomePage />} />
+            <Route index element={<DayPage />} />
             <Route path="/temperature" element={<TemperaturePage />} />
             <Route path="/precipitation" element={<PrecipitationPage />} />
             <Route path="/humidity" element={<HumidityPage />} />

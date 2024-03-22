@@ -1,7 +1,6 @@
-
 import { useEffect, useState } from "react";
 import { Ribbon } from "../../components/ribbon/ribbon";
-import Card from "../../components/card/card";
+import Card2 from "../../components/card/card2";
 import Forecast from "../../components/forecast/forecast";
 import BurnTimeImage from "./BurnTime.png";
 import VitaminDRadiationImage from "./VitaminDRadiation.png";
@@ -28,7 +27,7 @@ export default function UvPage() {
 
     // Fetch UV data using useEffect
     useEffect(() => {
-        const apiKey1 = 'openuv-3yquj97rltx0biz4-io';
+        const apiKey1 = 'openuv-gburlu1uksou-io';
         const latitude = 51.1;
         const longitude = -0.11;
 
@@ -100,7 +99,7 @@ export default function UvPage() {
         <>
             <Ribbon/>
 
-            <Card>
+            <Card2>
                 <div className="rainchart">
                 </div>
                 <div className="current-uv">
@@ -111,14 +110,9 @@ export default function UvPage() {
                             <img src={VitaminDRadiationImage} alt="Minutes for sunlight exposure for sufficient Vitamin D intake" width={600} height={250} style={{ width: '50%', height: '50%' }}/>
                     </div>
                 </div>
-            </Card>
+            </Card2>
 
             <Forecast
-                today={{
-                    hi: weatherData ? weatherData.main.temp_max : null, // Access temperature from weatherData
-                    low: weatherData ? weatherData.main.temp_min : null, // Access temperature from weatherData
-                    uv_max: uvData ? uvData.result.uv_max : null // Access UV max data
-                }} 
                 suggestions={displayUvSuggestions()}
             />
         </>

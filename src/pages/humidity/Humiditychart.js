@@ -4,7 +4,7 @@ import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement
 import {useGlobalState} from "../../stores/weatherState";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, Tooltip);
 
-function Tempchart() {
+function Humidchart() {
     const [weatherData, setWeatherData] = useState(null);
     const [weather] = useGlobalState();
 
@@ -31,8 +31,8 @@ function Tempchart() {
         labels: weatherData ? weatherData.map(entry => entry.dt_txt) : [],
         datasets: [
             {
-                label: 'Temperature',
-                data: weatherData ? weatherData.map(entry => entry.main.temp) : [],
+                label: 'Humidity',
+                data: weatherData ? weatherData.map(entry => entry.main.humidity) : [],
                 borderColor: 'rgb(0,59,255)',
                 pointBorderColor: 'rgb(143,12,227)',
                 pointBackgroundColor: 'rgb(143,12,227)',
@@ -47,7 +47,7 @@ function Tempchart() {
                 beginAtZero: true,
                 title: {
                     display: true,
-                    text: 'Temperature (°C)'
+                    text: 'Humidity (%)'
                 }
             },
             x: {
@@ -60,7 +60,7 @@ function Tempchart() {
     };
 
     return (
-        <div className="Tempchart" style={{width: '60%', padding: '1rem', margin: '1rem' }}>
+        <div className="Humidchart" style={{width: '60%', padding: '1rem', margin: '1rem' }}>
                 <Line
                     data={data}
                     options={options}
@@ -69,4 +69,4 @@ function Tempchart() {
     );
 }
 
-export default Tempchart;
+export default Humidchart;

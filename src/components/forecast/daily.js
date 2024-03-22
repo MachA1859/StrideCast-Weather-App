@@ -18,7 +18,8 @@ export default function Daily() {
             const dt = new Date(weather.json.list[i].dt_txt)
             const payload = {
                 date: dt,
-                weather: weather.json.list[i].weather[0].main
+                weather: weather.json.list[i].weather[0].main,
+                tempearature: weather.json.list[i].main.temp
             }
             daily[dt.getDay()] = payload
         }
@@ -30,6 +31,7 @@ export default function Daily() {
         let logo;
         const day = payload.weather;
         const date = payload.date;
+        const temp = payload.tempearature;
 
         if (day === "Clear") {
             logo = './icons/sun.png'
@@ -54,7 +56,7 @@ export default function Daily() {
 
         return (
             <div className={"daily-card"} key={index}>
-                <p>{date.getDate()} {month}</p> <img key={`${day}-${index}`} src={logo} alt={day}/>
+                <p>{date.getDate()} {month} {temp}°C </p> <img key={`${day}-${index}`} src={logo} alt={day}/>
             </div>
         );
     });

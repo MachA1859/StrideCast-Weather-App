@@ -1,19 +1,27 @@
-.suggestions {
+.Info {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-.suggestions .left {
+.Info .Temp {
+    color: #ffffff;
+    font-family: "Space Mono", Helvetica;
+    font-size: 30px;
+    font-weight: 400;
+    padding: 2rem;
+}
+.Info .Suggestions {
+    color: #ffffff;
+    font-family: "Space Mono", Helvetica;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 1rem;
+}
+.Info .Suggestions h3 {
     color: #ffffff;
     font-family: "Space Mono", Helvetica;
     font-size: 30px;
     font-weight: 400;
 }
 
-.suggestions .right {
-    color: #ffffff;
-    font-size: 40px;
-    font-weight: 400;
-    font-family: "Space Mono", Helvetica;
-}
