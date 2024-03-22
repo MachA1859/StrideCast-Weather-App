@@ -5,14 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { GlobalStateProvider } from './stores/weatherState';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <GlobalStateProvider>
-      <App />
-    </GlobalStateProvider>
-  </React.StrictMode>
+    <BrowserRouter>
+        <React.StrictMode>
+            <GlobalStateProvider>
+                <App />
+            </GlobalStateProvider>
+        </React.StrictMode>
+    </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

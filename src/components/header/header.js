@@ -2,10 +2,12 @@ import React from "react";
 import "./header.css";
 import { useGlobalState } from "../../stores/weatherState";
 import { fetchByCity } from "../../functions/weather";
+import Dropdown from "../header/dropdown";
 
 export default function Header() {
     const [state,dispatch] = useGlobalState();
     const [textstate, setTextState] = React.useState("");
+    const [dropdownVisible, setDropdownVisible] = React.useState(false);
 
     const searchClick = async () => {
         try {
@@ -13,17 +15,19 @@ export default function Header() {
             if (json && json.list) {
                 dispatch({ isLoading: false, json });
             } else {
-                // if json or json.list is undefined
                 console.error("Invalid response format: ", json);
             }
         } catch (error) {
-            //if any error occurs
             console.error("Error fetching weather data:", error);
         }
     };
 
     const handleInputChange = (event) => {
         setTextState(event.target.value);
+    };
+
+    const toggleDropdown = () => {
+        setDropdownVisible(!dropdownVisible);
     };
 
     return (
@@ -43,7 +47,9 @@ export default function Header() {
                     onChange={handleInputChange}
                 />
                 <img src="./icons/search.png" alt="search" onClick={searchClick}/>
-                <img src="./icons/dropdownMenu.png" alt="dropdownMenu"/>
+                <img src="./icons/dropdownMenu.png" alt="dropdownMenu" onClick={toggleDropdown}/>
+                {dropdownVisible && <Dropdown />}
+
             </div>
         </header>
     );

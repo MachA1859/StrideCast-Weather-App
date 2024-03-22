@@ -7,6 +7,7 @@
 .header .right {
     display: flex;
     gap: 1rem;
+    position: relative;
 }
 
 .header img {
@@ -28,4 +29,37 @@
 {
     border-radius: 0.5rem;
     border: none;
+}
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%; /* Position the dropdown menu from the middle of the button */
+    transform: translateX(-45%); /* Shift the dropdown menu to the left by half of its own width */
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 1rem;
+    align-content: center;
+    border-radius: 0.5rem;
+}
+
+.dropdown ul {
+    list-style-type: none;
+    font-family: "Space Mono", Helvetica;
+}
+.dropdown ul li {
+    padding: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+}
+.dropdown ul li a:hover {
+    background-color: rgb(163, 220, 246);
+}
+.dropdown ul li a {
+    text-decoration: none;
+    color: black;
+}
+.dropdown .title {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }

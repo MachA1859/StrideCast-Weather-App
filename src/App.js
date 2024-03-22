@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/header/header';
 import HomePage from './pages/home/home';
@@ -62,7 +62,6 @@ function App() {
   return (
       <div className="App" style={{backgroundImage: `url(${backgroundImg})`}}>
         <Header />
-        <BrowserRouter>
           <Routes>
             <Route index element={<DayPage />} />
             <Route path="/temperature" element={<TemperaturePage />} />
@@ -74,7 +73,6 @@ function App() {
             <Route path="/day" element={<DayPage />} />
             <Route path='*' element={<NoPage />} />
           </Routes>
-        </BrowserRouter>
       </div>
   );
 }
