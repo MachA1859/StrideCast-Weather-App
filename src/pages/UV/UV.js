@@ -6,6 +6,7 @@ import Forecast from "../../components/forecast/forecast";
 import BurnTimeImage from "./BurnTime.png";
 import VitaminDRadiationImage from "./VitaminDRadiation.png";
 import { useGlobalState } from "../../stores/weatherState";
+import './UV.css';
 
 export default function UvPage() {
     const apiKey = "37e1e972493bca166c0cc3a7551113ac";
