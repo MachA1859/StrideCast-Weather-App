@@ -82,14 +82,17 @@ const DayPage = () => {
             {/* runningTime */}
             </Card2>
 
-            {hourlyTemp.map((data, index) => (
-                <Card2>
-                    <div key={index}>
-                        <p>{data.hour}</p>
-                        <p>{data.temp}°C</p>
-                    </div>
-                </Card2>
-            ))}
+            <Card2>
+                <div>
+                    {hourlyTemp.map((data, index) => (
+                        
+                            <div key={index}>
+                                <p>{data.hour} {data.temp}°C</p>
+                            </div>
+                       
+                    ))}
+                </div>
+            </Card2>
             
 
             <Card2>
@@ -106,7 +109,7 @@ const DayPage = () => {
                             {/* Render suggestions based on weather */}
                             {/* Use values from 'essentials' state */}
                         </ul>
-                    <img src={"./backpack.png"} alt={"Backpack"} />
+                    <img src={backpack} alt={"Backpack"} />
                 </div>
             </Card2>
 
