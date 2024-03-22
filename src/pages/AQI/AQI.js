@@ -76,19 +76,7 @@ const AQI = () => {
 
             <div className="card-container">
                 {highestPollutant && (
-
                     <Card2>
-<<<<<<< HEAD
-                        <div>
-                            <img  className="main-pollutant-image" src={AQIImages[highestPollutant.level - 1]} alt={`AQI${highestPollutant.level}`} />
-                            <div className="main_info">
-
-                                <div className="header-line">
-                                    <h3>Primary Pollutant:</h3>
-                                    <h2>{highestPollutant.name}</h2>
-                                </div>
-                                    <p>Pollutant Level: {highestPollutant.level}</p>
-=======
                         <div className="main_info">
                             <div className="top-line">
                                 <img className="main-pollutant-image" src={getAQIImage(highestPollutant.level)}
@@ -100,7 +88,6 @@ const AQI = () => {
                             </div>
                             <div>
                                 <h2>{highestPollutant.name}</h2>
->>>>>>> e1b3e633d052bf160040bd760f32365d497eed23
                             </div>
                         </div>
                     </Card2>)}
@@ -119,10 +106,7 @@ const AQI = () => {
                         ))}
                     </div>
                 </Card2>
-
-
             </div>
-
 
             <Forecast
                 today={{
