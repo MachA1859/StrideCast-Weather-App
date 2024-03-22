@@ -22,7 +22,6 @@ function Tempchart() {
                 if(now.getDate()===dt.getDate())
                     today.push(weather.json.list[i])
             }
-            console.log(today)
             weatherData = today
         }
 
