@@ -3,7 +3,7 @@ import { Ribbon } from "../../components/ribbon/ribbon";
 import Forecast from "../../components/forecast/forecast";
 import Card2 from "../../components/card/card2";
 import {useGlobalState} from "../../stores/weatherState";
-
+import './Wind.css';
 
 export default function WindSpeedPage() {
     const apiKey = "37e1e972493bca166c0cc3a7551113ac";
