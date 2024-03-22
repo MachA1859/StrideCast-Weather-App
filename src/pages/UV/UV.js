@@ -1,80 +1,109 @@
-import { useEffect, useState } from "react";
+
+import React, { useEffect, useState, useRef } from "react";
 import { Ribbon } from "../../components/ribbon/ribbon";
 import Card2 from "../../components/card/card2";
 import Forecast from "../../components/forecast/forecast";
 import BurnTimeImage from "./BurnTime.png";
 import VitaminDRadiationImage from "./VitaminDRadiation.png";
+import { useGlobalState } from "../../stores/weatherState";
 
 export default function UvPage() {
-    // Define apiKey and apiUrl outside of the component function
     const apiKey = "37e1e972493bca166c0cc3a7551113ac";
     const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=dubai";
 
-    // Define state to store weather data
-    const [weatherData, setWeatherData] = useState(null);
     const [uvData, setUvData] = useState(null);
+    const [weatherData, setWeatherData] = useState([]);
+    const [weather] = useGlobalState();
+    const [uvDataFetched, setUvDataFetched] = useState(false);
+    const prevPayloadRef = useRef(null);
 
-    // Define getWeather function outside of the component function
-    async function getWeather() {
+    useEffect(() => {
+        if (weather.json === undefined || weather.json.city === undefined) {
+            setWeatherData([]);
+            return;
+        }
+
+        const payload = {
+            city: weather.json.city.name
+        };
+
+        setWeatherData([payload]);
+
+        const city = payload.city;
+        fetchGeocoding({city});
+        setUvDataFetched(true);
+
+        const prevPayload = prevPayloadRef.current;
+        if (prevPayload !== null && prevPayload.city !== payload.city) {
+            //console.log("City updated:", payload.city);
+        }
+        prevPayloadRef.current = payload;
+
+    }, [weather.json, weather.json?.city?.name]);
+
+    async function fetchGeocoding({city}) {
         try {
-            const response = await fetch(apiUrl + '&appid=' + apiKey);
+            const response = await fetch(`https://api.api-ninjas.com/v1/geocoding?city=${encodeURIComponent(city)}`, {
+                headers: {
+                    'X-Api-Key': 'IxMtDu2Q0+aQ+6ozaq75tA==c89tkAozKKBvqCCt'
+                }
+            });
             const data = await response.json();
-            setWeatherData(data); // Update state with fetched data
+            //console.log("Data=",data);
+            //console.log("Lon+lat",data[0].latitude,data[0].longitude)
+            const apiKey1 = 'openuv-1porlu2ycciw-io';
+            const latitude = data[0].latitude;
+            const longitude = data[0].longitude;
+
+            fetch(`https://api.openuv.io/api/v1/uv?lat=${latitude}&lng=${longitude}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-access-token': apiKey1
+                },
+            })
+                .then(res => res.json())
+                .then(data => {
+                    //console.log("UVI",data);
+                    setUvData(data);
+                    setUvDataFetched(true);
+                })
+                .catch(err => console.log(err));
+            return data;
         } catch (error) {
-            console.error("Error fetching weather data:", error);
+            console.error("Error fetching geocoding data:", error);
+            return null;
         }
     }
 
-    // Fetch UV data using useEffect
-    useEffect(() => {
-        const apiKey1 = 'openuv-gburlu1uksou-io';
-        const latitude = 51.1;
-        const longitude = -0.11;
-
-        fetch(`https://api.openuv.io/api/v1/uv?lat=${latitude}&lng=${longitude}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': apiKey1
-            },
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            setUvData(data); // Update state with UV data
-        })
-        .catch(err => console.log(err));
-    }, []); // Empty dependency array to run once when component mounts
-
-    // Function to display UV level name
     function displayUvName() {
-        if (!uvData) return; // Return if uvData is not available yet
+        if (!uvData) return;
 
         let uVName = "";
-        let colour=""
+        let colour = "";
         if (uvData.result.uv_max < 3) {
             uVName = "Low";
-            colour="Green"
+            colour = "Green";
         } else if (uvData.result.uv_max >= 3 && uvData.result.uv_max < 6) {
             uVName = "Moderate";
-            colour="Yellow"
+            colour = "Yellow";
         } else if (uvData.result.uv_max >= 6 && uvData.result.uv_max < 8) {
             uVName = "High";
-            colour="Orange"
+            colour = "Orange";
         } else if (uvData.result.uv_max >= 8 && uvData.result.uv_max < 11) {
             uVName = "Very High";
-            colour="Red"
+            colour = "Red";
         } else if (uvData.result.uv_max >= 11) {
             uVName = "Extreme";
-            colour="Violet"
+            colour = "Violet";
         }
         return <p>UV Level Name: {uVName}, UV Colour: {colour}</p>;
     }
 
     function displayUvSuggestions() {
-        if (!uvData) return; // Return if uvData is not available yet
+        if (!uvData) return;
 
-        let suggestions="";
+        let suggestions = "";
         if (uvData.result.uv_max < 3) {
             suggestions = "SPF 15 sunscreen is usually sufficient for short periods of time outdoors. Look for broad-spectrum protection to shield against both UVA and UVB rays.";
         } else if (uvData.result.uv_max >= 3 && uvData.result.uv_max < 6) {
@@ -86,14 +115,8 @@ export default function UvPage() {
         } else if (uvData.result.uv_max >= 11) {
             suggestions = "Use SPF 50+ sunscreen with broad-spectrum protection.Limit outdoor activities during peak sunlight hours, and seek shade whenever possible";
         }
-        return suggestions
+        return suggestions;
     }
-
-
-    // Call getWeather when the component mounts
-    useEffect(() => {
-        getWeather();
-    }, []);
 
     return (
         <>
@@ -103,18 +126,21 @@ export default function UvPage() {
                 <div className="rainchart">
                 </div>
                 <div className="current-uv">
-                    Current UV: {uvData ? uvData.result.uv_max : 'Loading...'}
+                    <p>Current UV: {uvData ? uvData.result.uv_max : 'Loading...'}</p>
                     {displayUvName()}
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <img src={BurnTimeImage} alt="Burn Time Calculation" width={600} height={220} style={{ marginRight: '10px', width: '50%', height: '50%' }}/>
-                            <img src={VitaminDRadiationImage} alt="Minutes for sunlight exposure for sufficient Vitamin D intake" width={600} height={250} style={{ width: '50%', height: '50%' }}/>
+                        <img src={BurnTimeImage} alt="Burn Time Calculation" width={600} height={220} style={{ marginRight: '10px', width: '50%', height: '50%' }}/>
+                        <img src={VitaminDRadiationImage} alt="Minutes for sunlight exposure for sufficient Vitamin D intake" width={600} height={250} style={{ width: '50%', height: '50%' }}/>
                     </div>
                 </div>
             </Card2>
 
             <Forecast
+                today={{
+                    uv_max: uvData ? uvData.result.uv_max : null
+                }}
                 suggestions={displayUvSuggestions()}
             />
         </>
-    )
+    );
 }
