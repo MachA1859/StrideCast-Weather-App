@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from "react";
 import { Ribbon } from "../../components/ribbon/ribbon";
 import Card2 from "../../components/card/card2";
@@ -9,8 +8,6 @@ import { useGlobalState } from "../../stores/weatherState";
 import './UV.css';
 
 export default function UvPage() {
-    const apiKey = "37e1e972493bca166c0cc3a7551113ac";
-    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=dubai";
 
     const [uvData, setUvData] = useState(null);
     const [weatherData, setWeatherData] = useState([]);
@@ -24,39 +21,31 @@ export default function UvPage() {
             return;
         }
 
+        const { lat, lon } = weather?.json?.city?.coord || {};
+
         const payload = {
-            city: weather.json.city.name
+            lat: lat,
+            lon: lon
         };
 
         setWeatherData([payload]);
 
-        const city = payload.city;
-        fetchGeocoding({city});
+        fetchGeocoding(payload);
         setUvDataFetched(true);
 
         const prevPayload = prevPayloadRef.current;
-        if (prevPayload !== null && prevPayload.city !== payload.city) {
-            //console.log("City updated:", payload.city);
+        if (prevPayload !== null && (prevPayload.lat !== payload.lat || prevPayload.lon !== payload.lon)) {
+            //console.log("Coordinates updated:", payload.lat, payload.lon);
         }
         prevPayloadRef.current = payload;
 
-    }, [weather.json, weather.json?.city?.name]);
+    }, [weather.json, weather.json?.city?.coord]);
 
-    async function fetchGeocoding({city}) {
+    async function fetchGeocoding({lat, lon}) {
         try {
-            const response = await fetch(`https://api.api-ninjas.com/v1/geocoding?city=${encodeURIComponent(city)}`, {
-                headers: {
-                    'X-Api-Key': 'IxMtDu2Q0+aQ+6ozaq75tA==c89tkAozKKBvqCCt'
-                }
-            });
-            const data = await response.json();
-            //console.log("Data=",data);
-            //console.log("Lon+lat",data[0].latitude,data[0].longitude)
-            const apiKey1 = 'openuv-1porlu2ycciw-io';
-            const latitude = data[0].latitude;
-            const longitude = data[0].longitude;
+            const apiKey1 = 'openuv-1porlu38g6kk-io';
 
-            fetch(`https://api.openuv.io/api/v1/uv?lat=${latitude}&lng=${longitude}`, {
+            fetch(`https://api.openuv.io/api/v1/uv?lat=${lat}&lng=${lon}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,9 +59,8 @@ export default function UvPage() {
                     setUvDataFetched(true);
                 })
                 .catch(err => console.log(err));
-            return data;
         } catch (error) {
-            console.error("Error fetching geocoding data:", error);
+            console.error("Error fetching UV data:", error);
             return null;
         }
     }

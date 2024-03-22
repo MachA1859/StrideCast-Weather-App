@@ -16,7 +16,6 @@ import axios from 'axios';
 const AQIImages = [AQI1, AQI2, AQI3, AQI4, AQI5];
 
 const apiKey = "ca5e7726e301724c181570c7c9883465";
-const apiUrl = "https://api.openweathermap.org/data/2.5/air_pollution?";
 
 const AQI = () => {
     const [pollutants, setPollutants] = useState([]);
