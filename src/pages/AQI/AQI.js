@@ -47,11 +47,27 @@ const AQI = () => {
     }, []);
 
     const getPollutantLevel = (value) => {
-        if (value <= 50) return 1; // Good
-        else if (value <= 100) return 2; // Fair
-        else if (value <= 150) return 3; // Moderate
-        else if (value <= 200) return 4; // Poor
-        else return 5; // Very Poor
+        if (value <= 50) return "Good";
+        else if (value <= 100) return "Fair";
+        else if (value <= 150) return "Moderate";
+        else if (value <= 200) return "Poor";
+        else return "Very Poor";
+    };
+    const getAQIImage = (level) => {
+        switch (level) {
+            case "Good":
+                return AQIImages[0];
+            case "Fair":
+                return AQIImages[1];
+            case "Moderate":
+                return AQIImages[2];
+            case "Poor":
+                return AQIImages[3];
+            case "Very Poor":
+                return AQIImages[4];
+            default:
+                return null;
+        }
     };
 
     return (
@@ -62,29 +78,34 @@ const AQI = () => {
                 {highestPollutant && (
 
                     <Card2>
-                        <div>
-                            <img  className="main-pollutant-image" src={AQIImages[highestPollutant.level - 1]} alt={`AQI${highestPollutant.level}`} />
-                            <div className="main_info">
-
-                                <div className="header-line">
-                                    <h3>Primary Pollutant</h3>
-                                    <h2>{highestPollutant.name}</h2>
-                                </div>
-                                    <p>Pollutant Level: {highestPollutant.level}</p>
+                        <div className="main_info">
+                            <div className="top-line">
+                                <img className="main-pollutant-image" src={getAQIImage(highestPollutant.level)}
+                                     alt={`AQI${highestPollutant.level}`}/>
+                                <p className="pollutant-level">{highestPollutant.level}</p>
+                            </div>
+                            <div>
+                                <h3>Primary Pollutant:</h3>
+                            </div>
+                            <div>
+                                <h2>{highestPollutant.name}</h2>
                             </div>
                         </div>
                     </Card2>)}
 
                 <Card2>
-                {pollutants.map((pollutant, index) => (
-                        <div className="info-center" key={index}>
-                                <img className="pollutant-image" src={AQIImages[pollutant.level - 1]}
-                                     alt={`AQI${pollutant.level}`}/>
-                                <p className="name">{pollutant.name}</p>
-                                <p>Pollutant Level: {pollutant.level}</p>
-                                <p>Concentration: {pollutant.concentration} μg/m³</p>
-                        </div>
-                    ))}
+                    <div className="pollutants">
+                        {pollutants.map((pollutant, index) => (
+                            <div className="infos" key={index}>
+                                <img src={getAQIImage(pollutant.level)} alt={`AQI${pollutant.level}`}/>
+                                <div className="data">
+                                    <p>{pollutant.name}</p>
+                                    <p>{pollutant.level}</p>
+                                    <p>{pollutant.concentration} μg/m³</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </Card2>
 
 
