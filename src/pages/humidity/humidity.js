@@ -34,11 +34,11 @@ export default function HumidityPage() {
 
     let suggestions = "";
     if (currentHumidity > 0.6) {
-        suggestions = "Today has high humidity";
+        suggestions = "Today has high humidity, you may feel hotter than the actual temperature, be careful of heatstroke if high temperature";
     } else if (currentHumidity > 0.4) {
         suggestions = "Today has moderate humidity, best for running";
     } else if (currentHumidity <= 0.2) {
-        suggestions = "It is dry, take care";
+        suggestions = "It is dry today, you may feel colder than the actual temperature, be careful of catching a cold";
     }
 
     return (
