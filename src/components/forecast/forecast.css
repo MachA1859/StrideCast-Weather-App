@@ -6,3 +6,6 @@
 .forecast .forecast-daily {
     margin: 0 1rem;
 }
+.forecast {
+    display: block;
+}
