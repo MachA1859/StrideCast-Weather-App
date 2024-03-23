@@ -32,7 +32,6 @@ export default function WindSpeedPage() {
 
     }, [weather.json])
 
-    // Assuming the current humidity is the first item in the weatherData array
     const currentWind = weatherData && weatherData.length > 0 ? weatherData[0].wind.speed : null;
 
     let suggestions = "";

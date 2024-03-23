@@ -1,8 +1,14 @@
-# Getting Started with Create React App
+# Dependencies to install
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- npm install react-router-dom
+- npm install axios
+- npm install leaftlet
+- npm install react-leaflet
+- npm install react-leaflet-cluster
+- npm install chart.js
+- npm install react-chartjs-2
 
-## Available Scripts
+## Run the project
 
 In the project directory, you can run:
 
@@ -11,60 +17,43 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Summary of the project
+### HomePage:
+- The home page contains the current temperature
+- hourly forecast
+- Ideal running time, Steps, Km, Calorie goal calculator
+- Route Planner
+- essentials reminder
+- and Info about today's weather
 
-### `npm test`
+### WindSpeed:
+- Displays the wind speed of the current location
+- A windspeed Map
+- 5-day forecast
+- Today's highest and lowest temperature
+-s uggestions for the runners based on the wind speed
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Tempearture, Humidity, Precipitation:
+- Displays the temperature, humidity, and precipitation of the current location by a chart
+- 5-day forecast
+- Today's highest and lowest temperature
+- suggestions for the runners based on the temperature, humidity, and precipitation
 
-### `npm run build`
+### Air Quality:
+- Displays the Main pollutant of the location
+- Displays the level of different pollutants
+- 5-day forecast
+- Today's highest and lowest temperature
+- suggestions for the runners based on the air quality
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### UV:
+- Displays the UV index of the location
+- image to show how long do you need to be under the sun to get sufficient vitamin D
+- image to show how long  will it take for you to burn your skin for your skin type
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Others:
+- type the location in the search bar and click on the search icon to search for the location
+- Click on the menu icon to open the sidebar, which can links you to different pages
+- click on the runner icon can return to the home page
+- Ribbon bar at the top of the windspeed, temperature, Precipitation, humidity, UV and Air Quality pages can link you to the different pages

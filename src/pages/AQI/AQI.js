@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Ribbon } from "../../components/ribbon/ribbon";
 import Card2 from "../../components/card/card2";
 import Forecast from "../../components/forecast/forecast";
+import { useGlobalState } from "../../stores/weatherState";
 
 import AQI1 from "./AQI1.png";
 import AQI2 from "./AQI2.png";
@@ -15,17 +16,19 @@ import axios from 'axios';
 const AQIImages = [AQI1, AQI2, AQI3, AQI4, AQI5];
 
 const apiKey = "ca5e7726e301724c181570c7c9883465";
-const apiUrl = "https://api.openweathermap.org/data/2.5/air_pollution?lat=51.507351&lon=-0.127758";
 
 const AQI = () => {
     const [pollutants, setPollutants] = useState([]);
     const [highestPollutant, setHighestPollutant] = useState(null);
+    const [weather] = useGlobalState();
+    const { lat, lon } = weather?.json?.city?.coord || {};
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${apiUrl}&appid=${apiKey}`);
-                const data = response.data.list[0].components;
+                const response = await axios.get(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`);
+                console.log(response.data);
+                const data = response.data.list[0].components;;
 
                 const pollutantData = [
                     { name: 'PM 2.5', index: 'pm2_5', level: getPollutantLevel(data.pm2_5), concentration: data.pm2_5 },
@@ -44,7 +47,7 @@ const AQI = () => {
         };
 
         fetchData();
-    }, []);
+    }, [lat, lon]);
 
     const getPollutantLevel = (value) => {
         if (value <= 50) return "Good";
@@ -76,7 +79,6 @@ const AQI = () => {
 
             <div className="card-container">
                 {highestPollutant && (
-
                     <Card2>
                         <div className="main_info">
                             <div className="top-line">
@@ -107,10 +109,7 @@ const AQI = () => {
                         ))}
                     </div>
                 </Card2>
-
-
             </div>
-
 
             <Forecast
                 today={{

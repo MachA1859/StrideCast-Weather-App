@@ -22,7 +22,6 @@ export default function TemperaturePage() {
                 if(now.getDate()===dt.getDate())
                     today.push(weather.json.list[i])
             }
-            console.log(today)
             setWeatherData(today)
         }
 
@@ -34,7 +33,7 @@ export default function TemperaturePage() {
     let suggestions = "";
     if (currentTemp >= 30) {
         suggestions = "It is very hot outside, " +
-            "stay hydrated and avoid direct sunlight";
+            "stay hydrated and avoid running during peak hours";
     } else if (currentTemp >= 20 && currentTemp < 30) {
         suggestions = "It is quite warm outside, " +
             "wear light clothing and stay hydrated";
@@ -42,6 +41,14 @@ export default function TemperaturePage() {
     else if (currentTemp >= 10 && currentTemp < 20) {
         suggestions = "It is cool outside, " +
             "wear a light jacket during warm up and stay warm";
+    }
+    else if (currentTemp >= 0 && currentTemp < 10) {
+        suggestions = "It is quite cold outside, " +
+            "remember to stay warm,do some warm up before running"
+    }
+    else if (currentTemp < 0) {
+        suggestions = "It is freezing outside, " +
+            "keep warm,don't catch a cold after running";
     }
 
     return (

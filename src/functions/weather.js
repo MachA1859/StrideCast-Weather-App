@@ -1,7 +1,7 @@
-const token = "b787f8f939e6de8235f3e80d9aac65ba"
+const token = "255e8798eb33b20514c04d60089c31d2"
 
 export async function fetchByCity(city) {
-    const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${token}`)
+    const res = await fetch(`https://pro.openweathermap.org/data/2.5/forecast/hourly?q=${city}&appid=${token}&units=metric`)
     return res.json()
 }
 

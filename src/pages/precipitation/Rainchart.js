@@ -15,17 +15,10 @@ function Rainchart() {
             setWeatherData([])
         }
         else {
-            const today = []
-            for (let i = 0; i < weather.json.list.length; i++) {
-                const dt = new Date(weather.json.list[i].dt_txt)
-                const now = new Date()
-                if (now.getDay() === dt.getDay()) {
-                    today.push(weather.json.list[i])
-                }
+            const DataPoints = weather.json.list.slice(0, 13);
+            console.log(DataPoints)
+            setWeatherData(DataPoints)
             }
-
-            setWeatherData(today)
-        }
     }, [weather.json]);
 
 
