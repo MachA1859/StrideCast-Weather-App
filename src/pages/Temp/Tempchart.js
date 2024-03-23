@@ -4,7 +4,6 @@ import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement
 import {useGlobalState} from "../../stores/weatherState";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, Tooltip);
 
-export let weatherData = null;
 
 function Tempchart() {
 
@@ -16,7 +15,7 @@ function Tempchart() {
             setWeatherData([]) // Change this line
         }
         else {
-            const firstTenDataPoints = weather.json.list.slice(0, 10);
+            const firstTenDataPoints = weather.json.list.slice(0, 13);
             console.log(firstTenDataPoints)
             setWeatherData(firstTenDataPoints) // Change this line
         }
