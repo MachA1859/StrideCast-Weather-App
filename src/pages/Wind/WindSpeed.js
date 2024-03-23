@@ -7,17 +7,18 @@ import './WInd.css';
 
 export default function WindSpeedPage() {
     const apiKey = "37e1e972493bca166c0cc3a7551113ac";
-    const weatherApiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=dubai";
+    //const weatherApiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=dubai";
     const windMapUrl = "https://openweathermap.org/weathermap?basemap=map&cities=false&layer=windspeed&lat=35.1738&lon=12.6563&zoom=3";
 
     const [weatherData, setWeatherData] = useState(null);
-    const [weather] = useGlobalState();
+    const [weather] = useGlobalState(); //To get weather data using GlobalState
 
     useEffect(() => {
         if(weather.json===undefined){
             setWeatherData([])
 
         }
+            //Retrieving the weather data
         else {
             const today=[]
             for(let i=0;i<weather.json.list.length;i++){
@@ -32,8 +33,9 @@ export default function WindSpeedPage() {
 
     }, [weather.json])
 
-    const currentWind = weatherData && weatherData.length > 0 ? weatherData[0].wind.speed : null;
+    const currentWind = weatherData && weatherData.length > 0 ? weatherData[0].wind.speed : null; //Retrieving windspeed
 
+    //Depending on winspeed, personalised suggestion will be displayed
     let suggestions = "";
     let windName="";
     if (currentWind >= 1 && currentWind <= 7) {
@@ -63,6 +65,7 @@ export default function WindSpeedPage() {
                 </div>
             </Card2>
             <Card2>
+                {/*Using iframe to embed the map onto the page*/}
                 <iframe
                     src="https://openweathermap.org/weathermap?basemap=map&cities=false&layer=windspeed&lat=35.1738&lon=12.6563&zoom=3"
                     title="Wind Speed Map"
@@ -74,6 +77,7 @@ export default function WindSpeedPage() {
             </Card2>
 
             <Forecast
+                //Displaying suggestions using Forecast
                 suggestions={suggestions}
             />
         </>
