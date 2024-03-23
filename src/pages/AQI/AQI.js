@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Ribbon } from "../../components/ribbon/ribbon";
 import Card2 from "../../components/card/card2";
@@ -20,6 +21,7 @@ const apiKey = "ca5e7726e301724c181570c7c9883465";
 const AQI = () => {
     const [pollutants, setPollutants] = useState([]);
     const [highestPollutant, setHighestPollutant] = useState(null);
+    const [suggestions, setSuggestions] = useState("Be careful of the pollutants around you and be extra careful if you have breathing difficulties.");
     const [weather] = useGlobalState();
     const { lat, lon } = weather?.json?.city?.coord || {};
 
@@ -28,7 +30,7 @@ const AQI = () => {
             try {
                 const response = await axios.get(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`);
                 console.log(response.data);
-                const data = response.data.list[0].components;;
+                const data = response.data.list[0].components;
 
                 const pollutantData = [
                     { name: 'PM 2.5', index: 'pm2_5', level: getPollutantLevel(data.pm2_5), concentration: data.pm2_5 },
@@ -38,9 +40,12 @@ const AQI = () => {
                     { name: 'SO2', index: 'so2', level: getPollutantLevel(data.so2), concentration: data.so2 }
                 ];
                 setPollutants(pollutantData);
-
+                console(pollutantData);
                 const highest = pollutantData.reduce((prev, current) => (prev.concentration > current.concentration) ? prev : current);
                 setHighestPollutant(highest);
+
+                // Set suggestions here
+                setSuggestions(displayPm25(highest.name, highest.concentration));
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -56,6 +61,7 @@ const AQI = () => {
         else if (value <= 200) return "Poor";
         else return "Very Poor";
     };
+
     const getAQIImage = (level) => {
         switch (level) {
             case "Good":
@@ -104,6 +110,8 @@ const AQI = () => {
                                     <p>{pollutant.name}</p>
                                     <p>{pollutant.level}</p>
                                     <p>{pollutant.concentration} μg/m³</p>
+                                    {/* Display suggestions directly in AQI page */}
+                                    {displayPm25(pollutant.name, pollutant.concentration)}
                                 </div>
                             </div>
                         ))}
@@ -112,13 +120,32 @@ const AQI = () => {
             </div>
 
             <Forecast
-                today={{
-                    'hi': 10,
-                    'low': 3
-                }}
+                suggestions={suggestions}
             />
         </>
     );
 };
 
 export default AQI;
+
+// Moved displayPm25 outside of component
+function displayPm25(type, concentration) {
+    var suggestions = "";
+    if (type === "PM 2.5") {
+        if (concentration < 12) {
+            suggestions += "Suggestions: Air quality is good. It's safe to run.\n";
+        } else if (concentration >= 12 && concentration < 35.5) {
+            suggestions += "Suggestions: Air quality is moderate. Consider reducing intensity or duration of the run.\n";
+        } else if (concentration >= 35.5 && concentration < 55.5) {
+            suggestions += "Suggestions: Air quality is unhealthy for sensitive groups. Reduce prolonged or heavy exertion.\n";
+        } else if (concentration >= 55.5 && concentration < 150.5) {
+            suggestions += "Suggestions: Air quality is unhealthy. Reduce outdoor activities, especially strenuous exercise.\n";
+        } else if (concentration >= 150.5 && concentration < 250.5) {
+            suggestions += "Suggestions: Air quality is very unhealthy. Avoid outdoor activities, including running.\n";
+        } else {
+            suggestions += "Suggestions: Air quality is hazardous. Avoid all outdoor physical activities, including running.\n";
+        }
+    }
+    return suggestions;
+}
+
