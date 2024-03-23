@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Ribbon } from "../../components/ribbon/ribbon";
 import Card2 from "../../components/card/card2";
@@ -43,7 +42,7 @@ const AQI = () => {
                 console(pollutantData);
                 const highest = pollutantData.reduce((prev, current) => (prev.concentration > current.concentration) ? prev : current);
                 setHighestPollutant(highest);
-
+                
                 // Set suggestions here
                 setSuggestions(displayPm25(highest.name, highest.concentration));
             } catch (error) {
@@ -111,7 +110,7 @@ const AQI = () => {
                                     <p>{pollutant.level}</p>
                                     <p>{pollutant.concentration} μg/m³</p>
                                     {/* Display suggestions directly in AQI page */}
-                                    {displayPm25(pollutant.name, pollutant.concentration)}
+                                    {displayPm25(pollutant.concentration)}
                                 </div>
                             </div>
                         ))}
@@ -131,7 +130,6 @@ export default AQI;
 // Moved displayPm25 outside of component
 function displayPm25(type, concentration) {
     var suggestions = "";
-    if (type === "PM 2.5") {
         if (concentration < 12) {
             suggestions += "Suggestions: Air quality is good. It's safe to run.\n";
         } else if (concentration >= 12 && concentration < 35.5) {
@@ -145,7 +143,7 @@ function displayPm25(type, concentration) {
         } else {
             suggestions += "Suggestions: Air quality is hazardous. Avoid all outdoor physical activities, including running.\n";
         }
-    }
+    
     return suggestions;
 }
 
