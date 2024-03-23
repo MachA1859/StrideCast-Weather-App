@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import {Ribbon} from "../../components/ribbon/ribbon";
 import Card2 from "../../components/card/card2";
 import "./Days.css"
 import axios from 'axios';
@@ -76,9 +75,13 @@ const DayPage = () => {
 
     return (
         <>
-            <Ribbon/>
+            <div className="Today">
 
+            </div>
             <Card2>
+                <div className="Runtime">
+
+                </div>
             {/* runningTime */}
             </Card2>
 
