@@ -182,12 +182,11 @@ const DayPage = () => {
 
 export default DayPage;
 
-
+/*
 let DefaultIcon = L.icon({
     iconUrl: require("./location-pin.png"),
     iconSize: [38, 38],
   }); 
   L.Marker.prototype.options.icon = DefaultIcon;
 L.Marker.prototype.options.icon = DefaultIcon;
-
-export default DayPage;
+*/
