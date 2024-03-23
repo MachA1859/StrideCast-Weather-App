@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Ribbon } from "../../components/ribbon/ribbon";
 import Card2 from "../../components/card/card2";
 import Forecast from "../../components/forecast/forecast";
-import BurnTimeImage from "./BurnTime.png";
+import BurnTimeImage from "./BurnTime.png"; 
 import VitaminDRadiationImage from "./VitaminDRadiation.png";
 import { useGlobalState } from "../../stores/weatherState";
 import './UV.css';
@@ -12,7 +12,7 @@ export default function UvPage() {
     const [uvData, setUvData] = useState(null);
     const [weatherData, setWeatherData] = useState([]);
     const [weather] = useGlobalState();
-    const [uvDataFetched, setUvDataFetched] = useState(false);
+    const [uvDataFetched, setUvDataFetched] = useState(false); //To track whether UV data has been fetched
     const prevPayloadRef = useRef(null);
 
     useEffect(() => {
@@ -23,6 +23,7 @@ export default function UvPage() {
 
         const { lat, lon } = weather?.json?.city?.coord || {};
 
+        //Retrieving longitude and latitude values from weather to put into fetchGeocoding function
         const payload = {
             lat: lat,
             lon: lon
@@ -31,8 +32,9 @@ export default function UvPage() {
         setWeatherData([payload]);
 
         fetchGeocoding(payload);
-        setUvDataFetched(true);
+        setUvDataFetched(true); //Set UvDataFetched to be true as going to fetch UV data
 
+        //Updating payload to new city input
         const prevPayload = prevPayloadRef.current;
         if (prevPayload !== null && (prevPayload.lat !== payload.lat || prevPayload.lon !== payload.lon)) {
             //console.log("Coordinates updated:", payload.lat, payload.lon);
@@ -41,6 +43,7 @@ export default function UvPage() {
 
     }, [weather.json, weather.json?.city?.coord]);
 
+    //Get UV data using openuv API
     async function fetchGeocoding({lat, lon}) {
         try {
             const apiKey1 = 'openuv-1porlu38g6kk-io';
@@ -65,6 +68,7 @@ export default function UvPage() {
         }
     }
 
+    //Deciding UV name and colour based on UV index
     function displayUvName() {
         if (!uvData) return;
 
@@ -89,6 +93,7 @@ export default function UvPage() {
         return <p>UV Level Name: {uVName}, UV Colour: {colour}</p>;
     }
 
+    //Deciding suggestions to runner based on UV index
     function displayUvSuggestions() {
         if (!uvData) return;
 
@@ -117,6 +122,7 @@ export default function UvPage() {
                 <div className="current-uv">
                     <p>Current UV: {uvData ? uvData.result.uv_max : 'Loading...'}</p>
                     {displayUvName()}
+                    {/*Displaying images to enable user to calculate their burn time and Minutes for sunlight exposure for sufficient Vitamin D intake for their skin type*/}
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <img src={BurnTimeImage} alt="Burn Time Calculation" width={600} height={220} style={{ marginRight: '10px', width: '50%', height: '50%' }}/>
                         <img src={VitaminDRadiationImage} alt="Minutes for sunlight exposure for sufficient Vitamin D intake" width={600} height={250} style={{ width: '50%', height: '50%' }}/>
@@ -124,6 +130,7 @@ export default function UvPage() {
                 </div>
             </Card2>
 
+            {/*Display UV Index and Suggestions*/}
             <Forecast
                 today={{
                     uv_max: uvData ? uvData.result.uv_max : null
