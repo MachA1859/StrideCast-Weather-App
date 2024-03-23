@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Ribbon } from "../../components/ribbon/ribbon";
 import Card2 from "../../components/card/card2";
@@ -13,6 +14,7 @@ import AQI5 from "./AQI5.png";
 import "./AQI.css";
 import axios from 'axios';
 
+//Different AQI image for different AQI Level
 const AQIImages = [AQI1, AQI2, AQI3, AQI4, AQI5];
 
 const apiKey = "ca5e7726e301724c181570c7c9883465";
@@ -30,7 +32,7 @@ const AQI = () => {
                 const response = await axios.get(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`);
                 console.log(response.data);
                 const data = response.data.list[0].components;
-
+                {/*Retrieving Pollutant data*/}
                 const pollutantData = [
                     { name: 'PM 2.5', index: 'pm2_5', level: getPollutantLevel(data.pm2_5), concentration: data.pm2_5 },
                     { name: 'PM 10', index: 'pm10', level: getPollutantLevel(data.pm10), concentration: data.pm10 },
@@ -53,6 +55,7 @@ const AQI = () => {
         fetchData();
     }, [lat, lon]);
 
+    {/*Depending on pollutant value, it returns the Pollutant level*/}
     const getPollutantLevel = (value) => {
         if (value <= 50) return "Good";
         else if (value <= 100) return "Fair";
@@ -82,6 +85,7 @@ const AQI = () => {
         <>
             <Ribbon/>
 
+            {/*To display Primary Pollutant */}
             <div className="card-container">
                 {highestPollutant && (
                     <Card2>
@@ -101,6 +105,7 @@ const AQI = () => {
                     </Card2>)}
 
                 <Card2>
+                    {/*To print pollutant name, level, concentration and suggestion to user */}
                     <div className="pollutants">
                         {pollutants.map((pollutant, index) => (
                             <div className="infos" key={index}>
@@ -127,7 +132,7 @@ const AQI = () => {
 
 export default AQI;
 
-// Moved displayPm25 outside of component
+// Function to identify which type of Suggestion to provide to user depending on PM 2.5:
 function displayPm25(type, concentration) {
     var suggestions = "";
         if (concentration < 12) {
