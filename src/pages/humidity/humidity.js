@@ -5,6 +5,7 @@ import Forecast from "../../components/forecast/forecast";
 import Card from "../../components/card/card";
 import HumidityChart from "./Humiditychart";
 
+// This page displays the humidity chart and a forecast based on the current humidity
 export default function HumidityPage() {
     const [weatherData, setWeatherData] = useState(null);
     const [weather] = useGlobalState();

@@ -1,10 +1,10 @@
-
 import { useEffect, useState } from "react";
 import { Ribbon } from "../../components/ribbon/ribbon";
 import Card2 from "../../components/card/card2";
 import Forecast from "../../components/forecast/forecast";
 import { useGlobalState } from "../../stores/weatherState";
 
+// Importing AQI images
 import AQI1 from "./AQI1.png";
 import AQI2 from "./AQI2.png";
 import AQI3 from "./AQI3.png";
@@ -19,6 +19,7 @@ const AQIImages = [AQI1, AQI2, AQI3, AQI4, AQI5];
 
 const apiKey = "ca5e7726e301724c181570c7c9883465";
 
+// AQI function to display AQI data
 const AQI = () => {
     const [pollutants, setPollutants] = useState([]);
     const [highestPollutant, setHighestPollutant] = useState(null);
@@ -26,6 +27,7 @@ const AQI = () => {
     const [weather] = useGlobalState();
     const { lat, lon } = weather?.json?.city?.coord || {};
 
+    // Fetching AQI data from OpenWeatherMap API
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -63,7 +65,7 @@ const AQI = () => {
         else if (value <= 200) return "Poor";
         else return "Very Poor";
     };
-
+    // Function to get AQI image based on AQI level
     const getAQIImage = (level) => {
         switch (level) {
             case "Good":

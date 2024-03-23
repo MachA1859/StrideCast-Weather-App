@@ -5,6 +5,7 @@ import Forecast from "../../components/forecast/forecast";
 import Card from "../../components/card/card";
 import RainChart from "./Rainchart";
 
+// This page will display the precipitation forecast for the day.
 export default function PercipitationPage() {
     const [weatherData, setWeatherData] = useState(null);
     const [weather] = useGlobalState();
@@ -27,6 +28,7 @@ export default function PercipitationPage() {
 
     }, [weather.json])
 
+    // This function will check the precipitation forecast for the day and return a message to the user.
     let rainForecast = "";
     let bringClothes = false;
     if (weatherData) {

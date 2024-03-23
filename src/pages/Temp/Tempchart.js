@@ -4,23 +4,24 @@ import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement
 import {useGlobalState} from "../../stores/weatherState";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, Tooltip);
 
-
+// Chart component to display temperature data
 function Tempchart() {
 
     const [weather] = useGlobalState();
-    const [weatherData, setWeatherData] = useState(null); // Add this line
+    const [weatherData, setWeatherData] = useState(null);
 
     useEffect(() => {
         if(weather.json===undefined){
-            setWeatherData([]) // Change this line
+            setWeatherData([])
         }
         else {
             const firstTenDataPoints = weather.json.list.slice(0, 13);
             console.log(firstTenDataPoints)
-            setWeatherData(firstTenDataPoints) // Change this line
+            setWeatherData(firstTenDataPoints)
         }
     }, [weather.json])
 
+    // Chart data from weatherData
     const data = {
         labels: weatherData ? weatherData.map(entry => entry.dt_txt) : [],
         datasets: [
@@ -34,7 +35,7 @@ function Tempchart() {
             }
         ]
     };
-
+    // Chart options
     const options = {
         scales: {
             y: {

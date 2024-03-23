@@ -5,11 +5,12 @@ import {useGlobalState} from "../../stores/weatherState";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
+// This component will display a bar chart showing the chance of rain for the next 12 hours.
 function Rainchart() {
     const [weatherData, setWeatherData] = useState(null);
     const [weather] = useGlobalState();
 
-
+    // This function will update the weather data when the weather state changes.
     useEffect(() => {
         if (weather.json === undefined) {
             setWeatherData([])
@@ -29,7 +30,8 @@ function Rainchart() {
     const labels = weatherData.map(entry => entry.dt_txt.split(" ")[1]);
     const rainData = weatherData.map(entry => entry.pop*100 ); // Multiply by 100 to convert to percentage
 
-    const data = {
+    // The data for the bar chart
+        const data = {
         labels: labels,
         datasets: [
             {

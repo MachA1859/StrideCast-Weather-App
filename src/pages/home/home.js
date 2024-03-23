@@ -88,7 +88,7 @@ export default function HomePage() {
     };
 
 
-
+    // Update weather data
     useEffect(() => {
         if (weather.json === undefined) {
             setWeatherData([])
@@ -113,6 +113,7 @@ export default function HomePage() {
 
         const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+        // Current weather
         const current = {
             week: weekDays[new Date().getDay()],
             city: weather.json.city.name,
@@ -155,7 +156,7 @@ export default function HomePage() {
         });
     };
 
-
+    //map through the weather data
     const days = weatherData.map((payload, index) => {
         let logo;
         const day = payload.weather;
@@ -175,7 +176,6 @@ export default function HomePage() {
         }
 
 
-//html
         return (
             <div className="Hourly-card" key={index}>
                 <p>{time}0</p>

@@ -4,10 +4,12 @@ import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement
 import {useGlobalState} from "../../stores/weatherState";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Legend, Tooltip);
 
+// This component displays a line chart of the humidity data
 function Humidchart() {
     const [weatherData, setWeatherData] = useState(null);
     const [weather] = useGlobalState();
 
+    // The useEffect hook is used to update the weather data when the weather.json state changes
     useEffect(() => {
         if(weather.json===undefined){
             setWeatherData([])
@@ -20,7 +22,7 @@ function Humidchart() {
         }
     }, [weather.json]);
 
-
+    // The data and options objects are used to configure the chart
     const data = {
         labels: weatherData ? weatherData.map(entry => entry.dt_txt) : [],
         datasets: [
