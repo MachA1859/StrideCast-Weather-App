@@ -19,8 +19,8 @@ import { Icon, divIcon, point } from "leaflet";
 import { useMap } from "react-leaflet";
 
 const apiKey = "c0b5d0fcf8e510256c18eded3d9c33f6";
-const londonWeatherUrl = "https://pro.openweathermap.org/data/2.5/forecast/hourly?q=London&units=metric&cnt=24";
-const londonHourlyTempUrl = "https://pro.openweathermap.org/data/2.5/forecast/hourly?q=London&units=metric&cnt=24";
+const londonWeatherUrl = "https://pro.openweathermap.org/data/2.5/forecast/hourly?q=London&units=metric&cnt=12";
+const londonHourlyTempUrl = "https://pro.openweathermap.org/data/2.5/forecast/hourly?q=London&units=metric&cnt=12";
 
 
 const DayPage = () => {
