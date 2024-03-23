@@ -63,7 +63,7 @@ function App() {
       <div className="App" style={{backgroundImage: `url(${backgroundImg})`}}>
         <Header />
           <Routes>
-            <Route index element={<DayPage />} />
+            <Route index element={<HomePage />} />
             <Route path="/temperature" element={<TemperaturePage />} />
             <Route path="/precipitation" element={<PrecipitationPage />} />
             <Route path="/humidity" element={<HumidityPage />} />

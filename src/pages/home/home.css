@@ -1,0 +1,94 @@
+.weather-icon{
+    width : 3rem;
+    height: 3rem;
+}
+.Hourly-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container {
+    display: grid;
+    grid-template-areas:
+        'current current current'
+        'forecast steps essentials'
+        'forecast route-planner info';
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+}
+
+.current {
+    grid-area: current;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    line-height: 0.3;
+
+    font-family: "Space Mono", Helvetica;
+
+}
+.current .week{
+    font-size: 1.5rem;
+    font-weight: 700;
+
+}
+.current .temp{
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+.current .weather, .current .maxmin{
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.forecast {
+    grid-area: forecast;
+    display: flex;
+    justify-content: center;
+}
+
+.steps {
+    grid-area: steps;
+    display: flex;
+    justify-content: center;
+}
+
+
+.essentials {
+    grid-area: essentials;
+    display: flex;
+    justify-content: center;
+}
+
+.Essentials .icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+
+.route-planner {
+    grid-area: route-planner;
+}
+
+.info {
+    grid-area: info;
+}
+
+
+.Info .icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+
+.info img {
+    width: 2rem;
+    height: 2rem;
+}
+.steps img {
+    width: 2rem;
+    height: 2rem;
+}
+

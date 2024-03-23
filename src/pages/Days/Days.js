@@ -6,13 +6,13 @@ import "./Days.css";
 import axios from "axios";
 
 //images
-import backpack from "./backpack.png";
-import location from "./location-pin.png";
+import backpack from "../home/pic/backpack.png";
+import location from "../home/pic/location-pin.png";
 
 //leaflet
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { Icon, divIcon, point } from "leaflet";
+import L,{ Icon, divIcon, point } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
 const apiKey = "c0b5d0fcf8e510256c18eded3d9c33f6";
@@ -180,11 +180,9 @@ const DayPage = () => {
   );
 };
 
-export default DayPage;
-
 
 let DefaultIcon = L.icon({
-    iconUrl: require("./location-pin.png"),
+    iconUrl: require("../home/pic/location-pin.png"),
     iconSize: [38, 38],
   }); 
   L.Marker.prototype.options.icon = DefaultIcon;
